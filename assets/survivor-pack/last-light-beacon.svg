@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">The Last Light Beacon</title>
+  <desc id="desc">An ornate top-down harbor beacon with an octagonal seawall, salt-dark stone, aged brass braces, layered galleries, and a brilliant last-light lens.</desc>
+  <defs>
+    <linearGradient id="stone" x1="96" y1="104" x2="218" y2="286" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#477978"/>
+      <stop offset="0.25" stop-color="#204B4D"/>
+      <stop offset="0.62" stop-color="#0A292C"/>
+      <stop offset="1" stop-color="#020E11"/>
+    </linearGradient>
+    <linearGradient id="wetStone" x1="65" y1="238" x2="259" y2="306" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#31595A"/>
+      <stop offset="0.42" stop-color="#122F32"/>
+      <stop offset="1" stop-color="#061719"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="90" y1="52" x2="225" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF0AE"/>
+      <stop offset="0.2" stop-color="#C99648"/>
+      <stop offset="0.48" stop-color="#765126"/>
+      <stop offset="0.76" stop-color="#2D2118"/>
+      <stop offset="1" stop-color="#D0A458"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="102" y1="19" x2="214" y2="83" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E98269"/>
+      <stop offset="0.34" stop-color="#A9453E"/>
+      <stop offset="0.74" stop-color="#542127"/>
+      <stop offset="1" stop-color="#210F17"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="108" y1="72" x2="210" y2="139" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FFF4" stop-opacity="0.9"/>
+      <stop offset="0.25" stop-color="#FFDEA0" stop-opacity="0.5"/>
+      <stop offset="0.55" stop-color="#6D9D94" stop-opacity="0.34"/>
+      <stop offset="0.82" stop-color="#153B3D" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#FFF1C4" stop-opacity="0.62"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(160 108) rotate(90) scale(56 68)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.12" stop-color="#FFFDE6"/>
+      <stop offset="0.3" stop-color="#FFE38C"/>
+      <stop offset="0.58" stop-color="#F6A84E" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#F6A84E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="baseLight" cx="0" cy="0" r="1" gradientTransform="translate(160 271) rotate(90) scale(34 105)">
+      <stop stop-color="#78C6BC" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#78C6BC" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="masonry" width="46" height="30" patternUnits="userSpaceOnUse">
+      <path d="M0 2H46M0 29H46M23 2V15M0 15H46M10 15V29M38 15V29" stroke="#BCE2DD" stroke-opacity="0.13" stroke-width="1.6"/>
+      <path d="M0 5H46M0 18H46" stroke="#01090B" stroke-opacity="0.24" stroke-width="3"/>
+    </pattern>
+    <pattern id="salt" width="33" height="33" patternUnits="userSpaceOnUse">
+      <path d="M4 9L10 6L14 10L8 13ZM22 24L27 21L31 25L25 28Z" fill="#E7FFFB" fill-opacity="0.13"/>
+      <circle cx="24" cy="7" r="1.7" fill="#F3FFFD" fill-opacity="0.2"/>
+      <circle cx="9" cy="25" r="1.2" fill="#F3FFFD" fill-opacity="0.16"/>
+    </pattern>
+    <filter id="warmGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="towerClip">
+      <path d="M112 134L208 134L227 263L205 284H115L93 263Z"/>
+    </clipPath>
+    <clipPath id="glassClip">
+      <path d="M110 71L210 71L218 122L205 138H115L102 122Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="162" cy="286" rx="137" ry="30" fill="#010607" fill-opacity="0.76"/>
+  <ellipse cx="160" cy="278" rx="119" ry="25" fill="url(#baseLight)"/>
+
+  <!-- Layered octagonal breakwater. -->
+  <path d="M53 257L83 230H237L268 257L256 291L218 311H102L64 291Z" fill="#020A0C" stroke="#010607" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M62 256L88 236H231L259 257L249 284L214 302H106L72 284Z" fill="url(#wetStone)" stroke="#527C79" stroke-opacity="0.72" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M76 258L99 244H222L245 258L237 277L207 292H113L83 278Z" fill="#0A2528" stroke="#91B8B4" stroke-opacity="0.42" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M88 258H232M105 241L84 281M215 241L237 281M117 290L102 245M203 290L218 245" stroke="#C9E6E1" stroke-opacity="0.2" stroke-width="3"/>
+  <path d="M70 266C101 258 126 266 157 274C190 282 218 277 251 265" stroke="#69AAA4" stroke-opacity="0.3" stroke-width="3" stroke-dasharray="11 8"/>
+  <g fill="#102D30" stroke="#010708" stroke-width="3">
+    <circle cx="70" cy="260" r="7"/><circle cx="91" cy="238" r="6"/><circle cx="250" cy="260" r="7"/><circle cx="230" cy="238" r="6"/>
+    <circle cx="80" cy="286" r="6"/><circle cx="240" cy="286" r="6"/>
+  </g>
+  <g fill="#D9F7F2" fill-opacity="0.64">
+    <circle cx="70" cy="258" r="2.3"/><circle cx="91" cy="236" r="2"/><circle cx="250" cy="258" r="2.3"/><circle cx="230" cy="236" r="2"/>
+  </g>
+
+  <!-- Buttresses lock the tower into the seawall. -->
+  <g fill="#0A2528" stroke="#01080A" stroke-width="7" stroke-linejoin="round">
+    <path d="M104 204L78 242L79 278L112 260L122 214Z"/>
+    <path d="M216 204L242 242L241 278L208 260L198 214Z"/>
+  </g>
+  <path d="M104 216L88 246L88 264L107 253L115 220Z" fill="#315959"/>
+  <path d="M216 216L232 246L232 264L213 253L205 220Z" fill="#315959"/>
+  <path d="M91 241L106 232M229 241L214 232" stroke="#E1F7F3" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Tapered tower with masonry, tide stain, and metal skeleton. -->
+  <path d="M112 134L208 134L227 263L205 284H115L93 263Z" fill="url(#stone)" stroke="#01080A" stroke-width="10" stroke-linejoin="round"/>
+  <g clip-path="url(#towerClip)">
+    <rect x="88" y="129" width="144" height="160" fill="url(#masonry)"/>
+    <rect x="88" y="129" width="144" height="160" fill="url(#salt)"/>
+    <path d="M100 139L124 139L108 274H91Z" fill="#C0E7E1" fill-opacity="0.11"/>
+    <path d="M197 133L213 139L228 263L205 284L190 280Z" fill="#010A0C" fill-opacity="0.4"/>
+    <path d="M95 218C122 204 143 211 161 220C183 231 204 224 220 213V274C191 285 176 275 157 269C136 261 117 264 99 275Z" fill="#6AA29D" fill-opacity="0.12"/>
+  </g>
+  <path d="M101 166L218 166L221 187L98 187Z" fill="#251B17" stroke="#010708" stroke-width="6"/>
+  <path d="M103 169L217 169" stroke="url(#brass)" stroke-width="6"/>
+  <path d="M105 220L223 220L226 242L102 242Z" fill="#251B17" stroke="#010708" stroke-width="6"/>
+  <path d="M107 223L221 223" stroke="url(#brass)" stroke-width="6"/>
+  <g fill="#FFE7A1" stroke="#2B1C14" stroke-width="2.4">
+    <circle cx="111" cy="178" r="4"/><circle cx="160" cy="178" r="4"/><circle cx="210" cy="178" r="4"/>
+    <circle cx="113" cy="232" r="4"/><circle cx="164" cy="232" r="4"/><circle cx="215" cy="232" r="4"/>
+  </g>
+  <path d="M123 206L132 194L144 198L150 188L162 196L171 188L181 199L193 195L201 207" stroke="#B9DDD8" stroke-opacity="0.26" stroke-width="2" fill="none"/>
+
+  <!-- Door, windows, service pipes, and weathering. -->
+  <path d="M132 233C132 217 143 207 160 207C177 207 188 217 188 233V281H132Z" fill="#020B0D" stroke="#709C98" stroke-width="5"/>
+  <path d="M140 233C140 222 148 216 160 216C172 216 180 222 180 233V276H140Z" fill="#0C2D30"/>
+  <path d="M144 232H176M144 246H176M144 260H176M160 216V277" stroke="#A8D1CC" stroke-opacity="0.22" stroke-width="2"/>
+  <path d="M173 241L180 244L177 251L171 248Z" fill="#FFD881" filter="url(#softGlow)"/>
+  <g fill="#DFFBF7" stroke="#01090B" stroke-width="3">
+    <path d="M111 194L127 191L129 207L113 211Z"/>
+    <path d="M193 191L209 194L207 211L191 207Z" fill-opacity="0.56"/>
+  </g>
+  <path d="M119 144V165M201 143V165M117 187V219M205 187V220" stroke="#1D1714" stroke-width="8"/>
+  <path d="M119 145V164M201 144V164M117 189V217M205 189V218" stroke="#B88643" stroke-width="3"/>
+  <g stroke="#01090B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M136 139L145 151L139 165M190 188L182 199L188 218"/>
+    <path d="M110 243L118 251L113 263M209 150L202 158L207 166"/>
+  </g>
+  <g stroke="#DDF9F5" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round">
+    <path d="M139 139L148 150M193 188L185 198M108 243L116 250"/>
+  </g>
+
+  <!-- Lower gallery with readable rail rhythm. -->
+  <ellipse cx="160" cy="146" rx="76" ry="24" fill="#010708" fill-opacity="0.62"/>
+  <path d="M87 133L101 121H219L233 133L225 152H95Z" fill="#14383A" stroke="#010708" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M94 133H226M102 122L96 149M218 122L224 149" stroke="#9ABCB8" stroke-opacity="0.65" stroke-width="3"/>
+  <path d="M78 133H242M83 142H237" stroke="#DDF8F4" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#0B292B" stroke="#010708" stroke-width="3">
+    <circle cx="82" cy="135" r="7"/><circle cx="238" cy="135" r="7"/>
+    <circle cx="105" cy="149" r="6"/><circle cx="215" cy="149" r="6"/>
+  </g>
+  <path d="M89 128V142M111 123V149M136 122V145M184 122V145M209 123V149M231 128V142" stroke="#B98C49" stroke-width="3"/>
+
+  <!-- Lantern chamber and articulated Fresnel lens. -->
+  <path d="M110 71L210 71L218 122L205 138H115L102 122Z" fill="url(#glass)" stroke="#01080A" stroke-width="8" stroke-linejoin="round"/>
+  <g clip-path="url(#glassClip)">
+    <ellipse cx="160" cy="107" rx="57" ry="44" fill="url(#light)" filter="url(#warmGlow)"/>
+    <path d="M108 95C132 82 187 82 212 95M105 112C132 100 187 100 216 112M109 126C136 116 183 116 211 126" stroke="#FFF6CB" stroke-opacity="0.42" stroke-width="2.5"/>
+    <path d="M112 72L126 138M208 72L194 138" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="7"/>
+  </g>
+  <path d="M118 74L114 128M139 72L137 135M160 71V138M181 72L183 135M202 74L207 128" stroke="#102E30" stroke-width="6"/>
+  <path d="M120 76L116 126M140 74L139 132M159 73V135M180 74L181 132M200 76L205 126" stroke="#F6FFEA" stroke-opacity="0.68" stroke-width="2"/>
+  <path d="M103 101H217" stroke="#271A14" stroke-width="7"/>
+  <path d="M105 99H215" stroke="#D4A453" stroke-width="3"/>
+  <path d="M146 126L148 93L156 81H164L172 93L174 126Z" fill="#F7C35F" stroke="#3B2818" stroke-width="5" filter="url(#warmGlow)"/>
+  <path d="M153 123L154 96L160 86L166 96L167 123Z" fill="#FFFDE9"/>
+  <path d="M150 103H170M151 113H169" stroke="#E69A3D" stroke-width="2"/>
+  <circle cx="160" cy="104" r="8" fill="#FFFFFF"/>
+  <path d="M139 106L160 92L181 106L160 120Z" fill="#FFF7C7" fill-opacity="0.44" stroke="#FFFDEB" stroke-width="2"/>
+
+  <!-- Crown roof, ribs, wind vane, and compact beams. -->
+  <path d="M96 74L117 38L160 16L203 38L224 74L207 84H113Z" fill="url(#roof)" stroke="#010708" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M106 70L124 44L160 27L196 44L214 70L203 75H117Z" fill="#6F2B2B"/>
+  <path d="M124 44L116 72M143 34L139 75M160 27V76M177 34L181 75M196 44L204 72" stroke="#FFB08D" stroke-opacity="0.58" stroke-width="3"/>
+  <path d="M104 72C129 80 190 80 216 72" stroke="#F5BE65" stroke-width="4" filter="url(#softGlow)"/>
+  <path d="M160 18V6" stroke="#E9FDF8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M145 13H179M160 7L150 13L160 18L170 13Z" fill="#D7A655" stroke="#010708" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="160" cy="7" r="3" fill="#FFFCE3"/>
+  <path d="M113 91L14 58L10 95L108 112Z" fill="#FFEFC2" fill-opacity="0.09"/>
+  <path d="M207 91L306 58L310 95L212 112Z" fill="#FFEFC2" fill-opacity="0.09"/>
+  <path d="M24 78L104 99M296 78L216 99" stroke="#FFF8D7" stroke-opacity="0.34" stroke-width="4" stroke-linecap="round"/>
+  <path d="M49 86L104 101M271 86L216 101" stroke="#F1B957" stroke-opacity="0.26" stroke-width="2" stroke-dasharray="8 7"/>
+
+  <!-- Final salt rims and warning lights. -->
+  <g fill="#F47462" stroke="#2C1012" stroke-width="2" filter="url(#softGlow)">
+    <circle cx="96" cy="139" r="4"/><circle cx="224" cy="139" r="4"/>
+    <circle cx="88" cy="273" r="4"/><circle cx="232" cy="273" r="4"/>
+  </g>
+  <g stroke="#E4FCF8" stroke-linecap="round">
+    <path d="M100 255L114 266M220 255L206 266" stroke-opacity="0.46" stroke-width="3"/>
+    <path d="M103 190L116 193M204 193L217 190" stroke-opacity="0.3" stroke-width="2.5"/>
+    <path d="M107 155L121 158M199 158L214 155" stroke-opacity="0.34" stroke-width="2.5"/>
+  </g>
+</svg>

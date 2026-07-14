@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Tideweaver</title>
+  <desc id="desc">A top-down ranged harbor creature whose manta cloak, coral loom, and cold-white brine needle weave projectiles from the mirror tide.</desc>
+  <defs>
+    <linearGradient id="mantle" x1="38" y1="38" x2="119" y2="145" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D6261"/>
+      <stop offset="0.42" stop-color="#0A3032"/>
+      <stop offset="1" stop-color="#020D10"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="62" y1="25" x2="93" y2="82" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#91C5C0"/>
+      <stop offset="0.2" stop-color="#2B5E5D"/>
+      <stop offset="0.74" stop-color="#09272A"/>
+      <stop offset="1" stop-color="#010A0C"/>
+    </linearGradient>
+    <radialGradient id="needle" cx="0" cy="0" r="1" gradientTransform="translate(80 19) rotate(90) scale(18)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.2" stop-color="#D8FFFB"/>
+      <stop offset="0.52" stop-color="#6BC8C2" stop-opacity="0.76"/>
+      <stop offset="1" stop-color="#6BC8C2" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="finGrain" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M0 3L16 11M-4 10L5 15M11 0L20 5" stroke="#D7F8F4" stroke-opacity="0.11"/>
+      <path d="M1 14L15 1" stroke="#01090B" stroke-opacity="0.16" stroke-width="2"/>
+    </pattern>
+    <filter id="coldGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="redGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="mantleClip">
+      <path d="M80 48C55 46 36 58 30 80L13 99L39 103L32 126L57 119L65 148L80 132L96 148L103 119L129 127L121 103L148 99L130 80C124 58 105 46 80 48Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="80" cy="133" rx="61" ry="19" fill="#010607" fill-opacity="0.68"/>
+  <ellipse cx="80" cy="131" rx="42" ry="10" fill="#0A292B" fill-opacity="0.52" stroke="#7FAAA6" stroke-opacity="0.2" stroke-width="2"/>
+
+  <!-- Torn manta mantle and trailing tide ribbons. -->
+  <path d="M80 48C55 46 36 58 30 80L13 99L39 103L32 126L57 119L65 148L80 132L96 148L103 119L129 127L121 103L148 99L130 80C124 58 105 46 80 48Z" fill="url(#mantle)" stroke="#01080A" stroke-width="7" stroke-linejoin="round"/>
+  <g clip-path="url(#mantleClip)">
+    <rect x="10" y="43" width="140" height="108" fill="url(#finGrain)"/>
+    <path d="M19 97C45 81 60 84 80 96C100 108 119 105 142 93V119C116 127 99 124 80 114C61 104 43 105 24 116Z" fill="#5EA8A3" fill-opacity="0.16"/>
+    <path d="M80 65L57 128M80 65V135M81 65L103 129" stroke="#020D0F" stroke-width="6" stroke-linecap="round"/>
+    <path d="M74 65L55 117M87 66L105 118" stroke="#A8D5D0" stroke-opacity="0.28" stroke-width="2"/>
+  </g>
+  <path d="M24 93L39 84L54 90L42 102Z" fill="#8CC1BC" fill-opacity="0.62"/>
+  <path d="M136 93L121 84L106 90L118 102Z" fill="#8CC1BC" fill-opacity="0.62"/>
+  <path d="M34 116L49 109L56 117L40 122ZM126 116L111 109L104 117L120 122Z" fill="#DDFBF7" fill-opacity="0.36"/>
+
+  <!-- Shell hood and single aiming eye. -->
+  <path d="M80 28C62 29 49 44 51 61L61 79L80 88L99 79L109 61C110 44 98 29 80 28Z" fill="url(#shell)" stroke="#01080A" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M80 31L61 59L80 77L99 59Z" fill="#082226" stroke="#477B78" stroke-opacity="0.58" stroke-width="3"/>
+  <path d="M80 34L71 57L80 70L90 57Z" fill="#020B0D"/>
+  <path d="M70 55C76 51 85 51 91 55L87 63C82 66 77 65 73 62Z" fill="#DFFFFB" filter="url(#coldGlow)"/>
+  <path d="M77 57L83 56L85 60L79 62Z" fill="#FFFFFF"/>
+  <path d="M55 52L66 38M105 52L94 38" stroke="#E3FFFC" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M55 67L43 75M105 67L117 75" stroke="#02090B" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Coral loom: the ranged weapon is readable as a cross-body crescent. -->
+  <path d="M31 72C42 56 59 49 80 49C101 49 118 56 129 72" stroke="#02080A" stroke-width="13" stroke-linecap="round"/>
+  <path d="M31 72C42 56 59 49 80 49C101 49 118 56 129 72" stroke="#235253" stroke-width="7" stroke-linecap="round"/>
+  <path d="M32 73C47 67 63 66 80 68C98 66 114 67 128 73" stroke="#F26A60" stroke-width="3" stroke-linecap="round" filter="url(#redGlow)"/>
+  <path d="M32 72L48 81L44 89L27 79Z" fill="#163F40" stroke="#01080A" stroke-width="4"/>
+  <path d="M128 72L112 81L116 89L133 79Z" fill="#163F40" stroke="#01080A" stroke-width="4"/>
+  <path d="M48 82L80 92L112 82" stroke="#EF655B" stroke-opacity="0.88" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="80" cy="92" r="12" fill="#250E11" stroke="#F1675E" stroke-width="4" filter="url(#redGlow)"/>
+  <path d="M74 92L80 84L86 92L80 101Z" fill="#FFD6D0"/>
+  <circle cx="80" cy="92" r="3" fill="#FFFFFF"/>
+
+  <!-- Brine needle and launch rail point north. -->
+  <path d="M75 86L74 35L80 7L86 35L85 86Z" fill="#102F32" stroke="#01080A" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M80 12V79" stroke="#CFFFFA" stroke-opacity="0.75" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M80 4L87 19L80 28L73 19Z" fill="url(#needle)" stroke="#E5FFFC" stroke-width="2" filter="url(#coldGlow)"/>
+  <circle cx="80" cy="18" r="4" fill="#FFFFFF"/>
+  <path d="M67 72L93 72L91 82L69 82Z" fill="#143A3C" stroke="#02090B" stroke-width="4"/>
+  <path d="M70 75H90" stroke="#F4786E" stroke-width="2.5"/>
+
+  <!-- Hands and thread spools. -->
+  <path d="M52 79L40 88L46 100L60 92Z" fill="#082326" stroke="#01090B" stroke-width="4"/>
+  <path d="M108 79L120 88L114 100L100 92Z" fill="#082326" stroke="#01090B" stroke-width="4"/>
+  <circle cx="49" cy="91" r="7" fill="#B6433F" stroke="#2A0E11" stroke-width="3"/>
+  <circle cx="111" cy="91" r="7" fill="#B6433F" stroke="#2A0E11" stroke-width="3"/>
+  <path d="M45 88L53 94M107 94L115 88" stroke="#FFE0DB" stroke-opacity="0.72" stroke-width="2"/>
+
+  <!-- Bioluminescent stitches and salt flecks. -->
+  <g stroke="#F1675E" stroke-linecap="round" filter="url(#redGlow)">
+    <path d="M47 106L57 101L62 108L68 103" stroke-width="3"/>
+    <path d="M113 106L103 101L98 108L92 103" stroke-width="3"/>
+    <path d="M68 123L74 117M92 123L86 117" stroke-width="2.5"/>
+  </g>
+  <g fill="#E8FFFC">
+    <circle cx="27" cy="99" r="2.5"/><circle cx="134" cy="98" r="2"/>
+    <path d="M38 111L44 108L48 111L42 114ZM122 111L116 108L112 111L118 114Z"/>
+    <circle cx="67" cy="139" r="2"/><circle cx="95" cy="139" r="2"/>
+  </g>
+</svg>

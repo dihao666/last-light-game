@@ -1,0 +1,197 @@
+.battlefield-picker,
+.battlefield-picker * {
+  box-sizing: border-box;
+}
+
+.battlefield-picker {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 14px;
+  color: var(--paper, #f3f0e6);
+  font-family: var(--body, "Microsoft YaHei", "PingFang SC", sans-serif);
+  letter-spacing: 0;
+}
+
+.battlefield-picker__header {
+  min-width: 0;
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  color: var(--paper-dim, #c7c4b9);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.battlefield-picker__header > * {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.battlefield-picker__header > :last-child {
+  flex: none;
+  color: var(--gold, #f2c84b);
+  font-family: var(--display, "KaiTi", "STKaiti", serif);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.battlefield-options {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  background: rgba(7, 16, 18, 0.68);
+  border: 1px solid rgba(243, 240, 230, 0.16);
+  border-radius: 4px;
+}
+
+.battlefield-option {
+  --battlefield-accent: var(--battlefield-color, var(--gold, #f2c84b));
+
+  position: relative;
+  min-width: 0;
+  height: 58px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 8px 10px;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--paper-dim, #c7c4b9) 82%, transparent);
+  font: inherit;
+  letter-spacing: 0;
+  text-align: left;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
+}
+
+.battlefield-option:nth-child(2) {
+  --battlefield-accent: var(--battlefield-color, var(--cyan, #5ad3c8));
+}
+
+.battlefield-option + .battlefield-option {
+  border-left: 1px solid rgba(243, 240, 230, 0.14);
+}
+
+.battlefield-option__sigil {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: var(--battlefield-accent);
+  font-family: var(--display, "KaiTi", "STKaiti", serif);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  border: 1px solid color-mix(in srgb, var(--battlefield-accent) 72%, transparent);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 2px rgba(7, 16, 18, 0.46);
+  transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease;
+}
+
+.battlefield-option__copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.battlefield-option__copy > * {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.battlefield-option__copy strong {
+  color: currentColor;
+  font-family: var(--display, "KaiTi", "STKaiti", serif);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.battlefield-option__copy :is(span, small, em) {
+  color: rgba(199, 216, 212, 0.6);
+  font-family: var(--body, "Microsoft YaHei", "PingFang SC", sans-serif);
+  font-size: 8px;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.battlefield-option.is-selected {
+  color: var(--paper, #f3f0e6);
+  background-color: color-mix(in srgb, var(--battlefield-accent) 10%, rgba(7, 16, 18, 0.88));
+  box-shadow: inset 0 -2px 0 var(--battlefield-accent);
+}
+
+.battlefield-option.is-selected .battlefield-option__sigil {
+  color: var(--night, #071012);
+  background-color: var(--battlefield-accent);
+  border-color: var(--battlefield-accent);
+}
+
+.battlefield-option.is-selected .battlefield-option__copy :is(span, small, em) {
+  color: color-mix(in srgb, var(--battlefield-accent) 58%, var(--paper, #f3f0e6));
+}
+
+.battlefield-option:focus-visible {
+  z-index: 1;
+  outline: 2px solid var(--battlefield-accent);
+  outline-offset: -3px;
+}
+
+@media (hover: hover) {
+  .battlefield-option:hover:not(.is-selected) {
+    color: var(--paper, #f3f0e6);
+    background-color: color-mix(in srgb, var(--battlefield-accent) 6%, transparent);
+  }
+}
+
+@media (max-width: 390px), (max-height: 760px) {
+  .battlefield-picker {
+    margin-top: 10px;
+  }
+
+  .battlefield-picker__header {
+    margin-bottom: 5px;
+  }
+
+  .battlefield-option {
+    height: 52px;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 7px;
+    padding: 7px 8px;
+  }
+
+  .battlefield-option__sigil {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .battlefield-option__copy strong {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .battlefield-option,
+  .battlefield-option__sigil {
+    transition: none;
+  }
+}

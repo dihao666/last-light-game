@@ -1,0 +1,282 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071012" />
+    <title>最后一盏灯</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=20260714c" />
+    <link rel="stylesheet" href="src/ui/battlefield-picker.css?v=20260714c" />
+  </head>
+  <body>
+    <main id="game-shell" class="game-shell">
+      <div id="game-container" aria-label="最后一盏灯游戏画面"></div>
+      <div class="screen-grain" aria-hidden="true"></div>
+      <div id="damage-vignette" class="damage-vignette" aria-hidden="true"></div>
+
+      <header id="hud" class="hud" aria-label="游戏状态">
+        <div class="hud-brand">
+          <span class="hud-brand__mark" aria-hidden="true"><i></i></span>
+          <div>
+            <strong>最后一盏灯</strong>
+            <span>THE LAST LIGHT</span>
+          </div>
+        </div>
+
+        <div class="dawn-clock" aria-label="黎明进度">
+          <span id="wave-label" class="wave-label">第一夜 · 静默</span>
+          <strong id="clock-value">01:40</strong>
+          <div class="dawn-track"><i id="dawn-fill"></i></div>
+        </div>
+
+        <div class="hud-actions">
+          <div class="counter" aria-label="击退数量">
+            <span>击退</span>
+            <strong id="kill-count">000</strong>
+          </div>
+          <button id="sound-button" class="icon-button" type="button" aria-label="关闭声音" aria-pressed="false" data-tooltip="声音">
+            <span class="sound-icon" aria-hidden="true">♪</span>
+          </button>
+          <button id="pause-button" class="icon-button" type="button" aria-label="暂停游戏" data-tooltip="暂停">
+            <span class="pause-icon" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </div>
+      </header>
+
+      <section class="lamp-status" aria-label="随身火种充能，范围 0% 到 100%">
+        <div class="lamp-status__label">
+          <span class="lamp-status__name"><i class="lamp-status__ember" aria-hidden="true"></i>随身火种</span>
+          <strong id="lamp-health-text" class="lamp-status__burst">蓄光 0% · 0 爆</strong>
+        </div>
+        <div class="status-track status-track--lamp" role="progressbar" aria-label="随身火种充能" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <i id="lamp-health-fill"></i>
+          <span class="lamp-status__meter-label">充能</span>
+        </div>
+      </section>
+
+      <section class="player-status" aria-label="守夜人状态">
+        <div class="player-orb" aria-hidden="true"><i></i></div>
+        <div class="player-status__body">
+          <div class="player-status__row">
+            <span>守夜人</span>
+            <strong id="player-health-text">100</strong>
+          </div>
+          <div class="status-track status-track--player"><i id="player-health-fill"></i></div>
+          <div class="player-status__row player-status__row--level">
+            <span>火种等级 <b id="player-level">01</b></span>
+            <span id="xp-text">0 / 4</span>
+          </div>
+          <div class="status-track status-track--xp"><i id="xp-fill"></i></div>
+          <div id="build-list" class="build-list" aria-label="已获得能力">
+            <span class="build-list__empty">火种尚未共鸣</span>
+          </div>
+          <div id="synergy-list" class="synergy-list" aria-label="自动生效的组合技" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <section id="boss-status" class="boss-status" aria-label="Boss 状态" hidden>
+        <div>
+          <span>
+            <b id="boss-name">吞灯者</b>
+            <em id="boss-phase" class="boss-status__phase">一相</em>
+          </span>
+          <strong id="boss-health-text">620</strong>
+        </div>
+        <div class="status-track status-track--boss"><i id="boss-health-fill"></i></div>
+      </section>
+
+      <div id="objective-toast" class="objective-toast" aria-live="polite">
+        <span class="objective-toast__signal"></span>
+        <span id="objective-text">自由穿行 · 击退黑潮 · 蓄满随身火种</span>
+      </div>
+
+      <div id="threat-alert" class="threat-alert" role="status" aria-live="assertive" hidden>
+        <span class="threat-alert__mark" aria-hidden="true">!</span>
+        <span id="threat-text">危险逼近</span>
+      </div>
+
+      <section id="patrol-status" class="patrol-status" aria-label="巡夜事件" aria-live="polite" hidden>
+        <div class="patrol-status__head">
+          <span id="patrol-kind">巡夜事件</span>
+          <strong id="patrol-timer">09s</strong>
+        </div>
+        <div class="patrol-status__body">
+          <span class="patrol-status__mark" aria-hidden="true">巡</span>
+          <span>
+            <strong id="patrol-title">失落火种</strong>
+            <small id="patrol-detail">前往城东回收火种</small>
+          </span>
+        </div>
+        <div id="patrol-track" class="patrol-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <i id="patrol-fill"></i>
+        </div>
+      </section>
+
+      <div class="auto-fire" aria-label="武器状态">
+        <span class="auto-fire__reticle" aria-hidden="true"></span>
+        <span id="weapon-state">引灯矢 · 自动索敌</span>
+      </div>
+
+      <button id="dash-button" class="dash-button" type="button" aria-label="闪步（尚未开始）" data-tooltip="闪步" disabled>
+        <span class="dash-button__icon" aria-hidden="true"><i></i></span>
+        <span id="dash-cooldown" class="dash-button__status">SPACE</span>
+      </button>
+
+      <section id="touch-controls" class="touch-controls" aria-label="触摸移动控制">
+        <div id="joystick" class="joystick">
+          <span id="joystick-knob" class="joystick__knob"></span>
+        </div>
+      </section>
+
+      <section id="start-screen" class="overlay overlay--start" aria-labelledby="game-title">
+        <div class="start-panel">
+          <span id="start-eyebrow" class="eyebrow">第一远征 · 一局约 100 秒</span>
+          <h1 id="game-title">最后一盏灯</h1>
+          <p id="start-description">携带最后的火种自由穿行，在百秒黑潮中构筑武器与连携。</p>
+
+          <div class="battlefield-picker" aria-label="选择远征战场">
+            <div class="battlefield-picker__header">
+              <span>远征战场</span>
+              <strong id="selected-battlefield-name">城灯庭</strong>
+            </div>
+            <div id="battlefield-options" class="battlefield-options">
+              <button class="battlefield-option is-selected" type="button" data-battlefield="lantern-court" aria-pressed="true" style="--battlefield-color:#f2c84b">
+                <span class="battlefield-option__sigil">城</span>
+                <span class="battlefield-option__copy"><strong>城灯庭</strong><small>废墟自由猎行</small></span>
+              </button>
+              <button class="battlefield-option" type="button" data-battlefield="mirror-harbor" aria-pressed="false" style="--battlefield-color:#43d9d0">
+                <span class="battlefield-option__sigil">潮</span>
+                <span class="battlefield-option__copy"><strong>镜潮港</strong><small>潮线危区</small></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="weapon-picker" aria-label="选择守夜器">
+            <div class="weapon-picker__header">
+              <span>守夜器 · 远征档案 <b id="archive-total">0/144</b></span>
+              <strong id="selected-weapon-name">引灯矢</strong>
+            </div>
+            <div id="weapon-options" class="weapon-options">
+              <button class="weapon-option is-selected" type="button" data-weapon="tracker" aria-pressed="true" style="--weapon-color:#f2c84b">
+                <span class="weapon-option__sigil">矢</span>
+                <span><strong>引灯矢</strong><small>稳定追踪 <b data-weapon-mastery="tracker">0/24 印</b></small><em>专属 · 命中三次爆印</em></span>
+              </button>
+              <button class="weapon-option" type="button" data-weapon="scatter" aria-pressed="false" style="--weapon-color:#ef7563">
+                <span class="weapon-option__sigil">散</span>
+                <span><strong>碎星扇</strong><small>近距三连 <b data-weapon-mastery="scatter">0/24 印</b></small><em>专属 · 第四击环射</em></span>
+              </button>
+              <button class="weapon-option" type="button" data-weapon="lance" aria-pressed="false" style="--weapon-color:#69d5c8">
+                <span class="weapon-option__sigil">贯</span>
+                <span><strong>破夜枪</strong><small>重击穿透 <b data-weapon-mastery="lance">0/24 印</b></small><em>专属 · 第三击重枪</em></span>
+              </button>
+              <button class="weapon-option" type="button" data-weapon="returner" aria-pressed="false" style="--weapon-color:#c19cff">
+                <span class="weapon-option__sigil">轮</span>
+                <span><strong>回光轮</strong><small>飞出折返 <b data-weapon-mastery="returner">0/24 印</b></small><em>专属 · 第三击折返爆环</em></span>
+              </button>
+              <button class="weapon-option" type="button" data-weapon="arc" aria-pressed="false" style="--weapon-color:#8fe7ff">
+                <span class="weapon-option__sigil">雷</span>
+                <span><strong>星链符</strong><small>双枚追踪 <b data-weapon-mastery="arc">0/24 印</b></small><em>专属 · 第四击三段跃雷</em></span>
+              </button>
+              <button class="weapon-option" type="button" data-weapon="nova" aria-pressed="false" style="--weapon-color:#ffcf62">
+                <span class="weapon-option__sigil">曜</span>
+                <span><strong>曜日核</strong><small>重弹爆环 <b data-weapon-mastery="nova">0/24 印</b></small><em>专属 · 第三击引爆日珥</em></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-strip" aria-label="操作方式">
+            <div class="key-cluster" aria-hidden="true">
+              <kbd>W</kbd>
+              <kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+            </div>
+            <div class="control-copy">
+              <strong>移动</strong>
+              <span>方向键同样可用</span>
+            </div>
+            <div class="control-divider"></div>
+            <div class="auto-symbol" aria-hidden="true"><i></i></div>
+            <div class="control-copy">
+              <strong>自动攻击</strong>
+              <span>追逐余火成长 · 空格闪步</span>
+            </div>
+          </div>
+
+          <button id="start-button" class="command-button" type="button">
+            <span>携火踏入长夜</span>
+            <i class="command-button__arrow" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="start-manifest" aria-hidden="true">
+          <span>00:50</span><i></i><span>01:40</span>
+        </div>
+      </section>
+
+      <section id="upgrade-screen" class="overlay overlay--upgrade" role="dialog" aria-modal="true" aria-labelledby="upgrade-title" hidden>
+        <div class="upgrade-panel">
+          <span class="eyebrow">火种共鸣 · 选择一种成长</span>
+          <h2 id="upgrade-title">让光改变形状</h2>
+          <div id="upgrade-options" class="upgrade-options"></div>
+        </div>
+      </section>
+
+      <section id="route-screen" class="overlay overlay--route" role="dialog" aria-modal="true" aria-labelledby="route-title" hidden>
+        <div class="route-panel">
+          <span id="route-kicker" class="eyebrow">远征抉择 · 第二幕</span>
+          <h2 id="route-title">选择下一处战区</h2>
+          <p id="route-prompt">路线会改变敌群、奖励与终夜首领的攻击方式。</p>
+          <div class="route-progress" aria-label="远征进度">
+            <span id="route-origin">城灯庭</span><i></i><strong id="route-stage-name">第二幕</strong><i></i><span>终夜</span>
+          </div>
+          <div id="route-options" class="route-options"></div>
+        </div>
+      </section>
+
+      <section id="pause-screen" class="overlay overlay--pause" role="dialog" aria-modal="true" aria-labelledby="pause-title" hidden>
+        <div class="pause-panel">
+          <span class="eyebrow">夜色暂歇</span>
+          <h2 id="pause-title">暂停</h2>
+          <div class="pause-actions">
+            <button id="resume-button" class="command-button" type="button">继续守夜</button>
+            <button id="restart-from-pause" class="text-button" type="button">重新开始</button>
+            <button id="pause-loadout-button" class="text-button" type="button" aria-label="返回主页面并重新选择武器">返回主页面</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="end-screen" class="overlay overlay--end" role="dialog" aria-modal="true" aria-labelledby="end-title" hidden>
+        <div class="end-panel">
+          <span id="end-eyebrow" class="eyebrow">黎明记录</span>
+          <div id="end-seal" class="end-seal" aria-hidden="true"><i></i></div>
+          <h2 id="end-title">天亮了</h2>
+          <p id="end-message"></p>
+          <div class="end-stats">
+            <div><strong id="end-kills">0</strong><span>击退</span></div>
+            <div><strong id="end-level">1</strong><span>等级</span></div>
+            <div><strong id="end-lamp">0 次</strong><span>蓄光爆发</span></div>
+            <div><strong id="end-patrol">0/2</strong><span>巡夜</span></div>
+          </div>
+          <div id="end-archive" class="end-archive" aria-label="本局远征印记">
+            <div id="end-seals" class="end-seals"></div>
+            <p id="end-archive-summary">通关后写入远征档案</p>
+          </div>
+          <p id="end-route" class="end-route">远征路线 · 尚未记录</p>
+          <div class="end-actions">
+            <button id="restart-button" class="command-button" type="button">
+              <span>沿新路线再战</span>
+              <i class="command-button__arrow" aria-hidden="true"></i>
+            </button>
+            <button id="loadout-button" class="text-button" type="button">更换守夜器</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="node_modules/phaser/dist/phaser.min.js"></script>
+    <script src="src/content/battlefields.js?v=20260714m"></script>
+    <script src="src/stages/mirror-harbor.js?v=20260714m"></script>
+    <script src="game.js?v=20260714m"></script>
+
+  </body>
+</html>
+

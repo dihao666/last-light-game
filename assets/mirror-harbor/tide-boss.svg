@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">The Sovereign of the Mirror Tide</title>
+  <desc id="desc">A top-down abyssal harbor lord with a jagged ink-teal shell, coral-lit wounds, cold foam crests, and a revolving tidal heart.</desc>
+  <defs>
+    <linearGradient id="abyss" x1="92" y1="41" x2="229" y2="285" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#235657"/>
+      <stop offset="0.35" stop-color="#0B2D30"/>
+      <stop offset="0.72" stop-color="#041618"/>
+      <stop offset="1" stop-color="#01090B"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="118" y1="61" x2="208" y2="252" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4A7C79"/>
+      <stop offset="0.2" stop-color="#173F41"/>
+      <stop offset="0.52" stop-color="#071E21"/>
+      <stop offset="0.78" stop-color="#123537"/>
+      <stop offset="1" stop-color="#020D0F"/>
+    </linearGradient>
+    <radialGradient id="heart" cx="0" cy="0" r="1" gradientTransform="translate(160 172) rotate(90) scale(58)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.12" stop-color="#CFFFFA"/>
+      <stop offset="0.32" stop-color="#55BEB8"/>
+      <stop offset="0.56" stop-color="#EF655B"/>
+      <stop offset="1" stop-color="#2B1013"/>
+    </radialGradient>
+    <linearGradient id="foam" x1="57" y1="84" x2="263" y2="234" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5FFFD"/>
+      <stop offset="0.42" stop-color="#8ED4CF"/>
+      <stop offset="1" stop-color="#315D5D"/>
+    </linearGradient>
+    <pattern id="scaleGrain" width="28" height="24" patternUnits="userSpaceOnUse">
+      <path d="M-2 8Q7 19 16 8Q25 19 34 8" stroke="#A6D7D2" stroke-opacity="0.12" stroke-width="2"/>
+      <path d="M-2 20Q7 31 16 20Q25 31 34 20" stroke="#01090B" stroke-opacity="0.25" stroke-width="3"/>
+    </pattern>
+    <filter id="redGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="whiteGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="coreClip">
+      <path d="M160 48C112 48 78 83 76 130C74 165 89 201 111 235L160 278L211 235C233 202 247 164 244 129C240 82 208 48 160 48Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="160" cy="264" rx="132" ry="40" fill="#010607" fill-opacity="0.7"/>
+  <ellipse cx="160" cy="254" rx="105" ry="27" fill="#0B2B2D" fill-opacity="0.4" stroke="#6C9F9B" stroke-opacity="0.2" stroke-width="3"/>
+
+  <!-- Tidal limbs and torn fins create the boss silhouette. -->
+  <g fill="url(#abyss)" stroke="#010708" stroke-width="9" stroke-linejoin="round">
+    <path d="M103 91C73 65 41 56 17 70L48 91L21 106L66 119L101 132Z"/>
+    <path d="M217 91C247 65 279 56 303 70L272 91L299 106L254 119L219 132Z"/>
+    <path d="M83 136C51 121 22 126 10 145L45 151L18 174L67 170L97 158Z"/>
+    <path d="M237 136C269 121 298 126 310 145L275 151L302 174L253 170L223 158Z"/>
+    <path d="M91 197C54 199 27 218 24 244L57 232L48 268L86 239L112 214Z"/>
+    <path d="M229 197C266 199 293 218 296 244L263 232L272 268L234 239L208 214Z"/>
+    <path d="M125 234C95 250 80 278 91 302L112 273L128 307L143 264Z"/>
+    <path d="M195 234C225 250 240 278 229 302L208 273L192 307L177 264Z"/>
+  </g>
+  <g stroke="#85B9B4" stroke-opacity="0.42" stroke-width="4" stroke-linecap="round">
+    <path d="M88 101L45 80M83 119L40 106M232 101L275 80M237 119L280 106"/>
+    <path d="M75 145L37 145M73 161L38 172M245 145L283 145M247 161L282 172"/>
+    <path d="M86 211L50 232M234 211L270 232M119 253L99 284M201 253L221 284"/>
+  </g>
+  <g stroke="#DFFFFB" stroke-opacity="0.34" stroke-width="3" stroke-linecap="round">
+    <path d="M29 72L49 84M291 72L271 84M15 145L39 149M305 145L281 149M31 242L55 232M289 242L265 232"/>
+  </g>
+
+  <!-- Crown horns, like broken harbor breakwaters. -->
+  <path d="M120 69L91 32L103 12L128 53Z" fill="#0A292C" stroke="#010708" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M200 69L229 32L217 12L192 53Z" fill="#0A292C" stroke="#010708" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M123 64L103 27M197 64L217 27" stroke="#D5F5F1" stroke-opacity="0.58" stroke-width="4" stroke-linecap="round"/>
+  <path d="M104 18L98 31L108 29Z" fill="#F5FFFD"/>
+  <path d="M216 18L222 31L212 29Z" fill="#F5FFFD"/>
+
+  <!-- Armored central mantle. -->
+  <path d="M160 48C112 48 78 83 76 130C74 165 89 201 111 235L160 278L211 235C233 202 247 164 244 129C240 82 208 48 160 48Z" fill="url(#shell)" stroke="#010708" stroke-width="11" stroke-linejoin="round"/>
+  <g clip-path="url(#coreClip)">
+    <rect x="67" y="40" width="186" height="247" fill="url(#scaleGrain)"/>
+    <path d="M78 124C111 108 133 115 160 128C190 142 213 136 243 119V86H76Z" fill="#527F7C" fill-opacity="0.18"/>
+    <path d="M81 207C117 187 137 194 160 207C184 221 204 218 239 198V279H82Z" fill="#010A0C" fill-opacity="0.28"/>
+  </g>
+  <path d="M160 55L129 81L108 123L112 185L133 229L160 263L188 229L209 184L212 123L191 81Z" fill="#061A1D" fill-opacity="0.58" stroke="#6FA5A1" stroke-opacity="0.3" stroke-width="4"/>
+
+  <!-- Side armor plates and serrated shell ridges. -->
+  <g fill="#143B3D" stroke="#01090B" stroke-width="6" stroke-linejoin="round">
+    <path d="M84 104L106 78L126 92L114 121L83 133Z"/>
+    <path d="M236 104L214 78L194 92L206 121L237 133Z"/>
+    <path d="M81 151L112 129L119 163L100 194L78 181Z"/>
+    <path d="M239 151L208 129L201 163L220 194L242 181Z"/>
+    <path d="M101 211L124 178L137 219L117 246L96 230Z"/>
+    <path d="M219 211L196 178L183 219L203 246L224 230Z"/>
+  </g>
+  <g fill="url(#foam)">
+    <path d="M83 111L96 89L102 103L112 91L107 119Z"/>
+    <path d="M237 111L224 89L218 103L208 91L213 119Z"/>
+    <path d="M81 159L96 143L98 158L111 150L100 177Z"/>
+    <path d="M239 159L224 143L222 158L209 150L220 177Z"/>
+    <path d="M102 218L116 198L119 215L130 206L119 234Z"/>
+    <path d="M218 218L204 198L201 215L190 206L201 234Z"/>
+  </g>
+
+  <!-- The face is buried in a foam-edged helm. -->
+  <path d="M119 71C130 54 145 45 160 45C177 45 192 54 202 71L191 105L160 121L129 105Z" fill="#020C0E" stroke="#0D2729" stroke-width="6"/>
+  <path d="M123 70L136 51L145 69L160 45L175 69L184 51L198 70L190 84L174 75L160 90L145 75L130 84Z" fill="url(#foam)" stroke="#010809" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M133 88C148 80 172 80 187 88L180 107C168 115 152 115 140 107Z" fill="#07191C" stroke="#619A96" stroke-opacity="0.45" stroke-width="3"/>
+  <g fill="#FF8A80" filter="url(#redGlow)">
+    <path d="M141 93L153 91L149 100L138 101Z"/>
+    <path d="M179 93L167 91L171 100L182 101Z"/>
+    <circle cx="160" cy="99" r="4"/>
+  </g>
+  <g fill="#FFFDFC">
+    <circle cx="147" cy="96" r="2"/><circle cx="173" cy="96" r="2"/><circle cx="160" cy="98" r="1.5"/>
+  </g>
+
+  <!-- Revolving mirror-tide heart. -->
+  <circle cx="160" cy="172" r="63" fill="#010A0C" stroke="#315F5E" stroke-width="6"/>
+  <circle cx="160" cy="172" r="53" fill="#092426" stroke="#A4D2CE" stroke-opacity="0.48" stroke-width="3" stroke-dasharray="13 9"/>
+  <path d="M160 121C185 121 208 139 211 162C214 183 198 199 181 200C164 201 153 190 154 177C155 165 167 158 177 164C184 168 184 177 178 181C174 184 169 181 170 176" stroke="#8CD6D0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M160 223C135 223 112 205 109 182C106 161 122 145 139 144C156 143 167 154 166 167C165 179 153 186 143 180C136 176 136 167 142 163C146 160 151 163 150 168" stroke="#E9635A" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="160" cy="172" r="22" fill="url(#heart)" stroke="#010708" stroke-width="6" filter="url(#whiteGlow)"/>
+  <path d="M160 155L169 169L161 188L150 174Z" fill="#F7FFFD"/>
+  <circle cx="160" cy="172" r="6" fill="#FFFFFF"/>
+
+  <!-- Coral fissures leak through the shell. -->
+  <g stroke="#F26359" stroke-linecap="round" stroke-linejoin="round" filter="url(#redGlow)">
+    <path d="M109 118L123 132L117 145L132 156" stroke-width="5"/>
+    <path d="M211 119L197 132L203 145L189 157" stroke-width="5"/>
+    <path d="M101 185L120 190L123 205" stroke-width="4"/>
+    <path d="M219 185L200 190L197 205" stroke-width="4"/>
+    <path d="M137 236L148 245L143 258M183 236L172 245L177 258" stroke-width="4"/>
+  </g>
+  <g fill="#FFE1DC">
+    <circle cx="109" cy="118" r="3"/><circle cx="132" cy="156" r="3"/>
+    <circle cx="211" cy="119" r="3"/><circle cx="189" cy="157" r="3"/>
+  </g>
+
+  <!-- Barnacles, rivets, and whitewater flecks add close-range detail. -->
+  <g fill="#9DC9C5" stroke="#02090B" stroke-width="2">
+    <circle cx="99" cy="137" r="5"/><circle cx="92" cy="147" r="3"/><circle cx="105" cy="148" r="3"/>
+    <circle cx="221" cy="137" r="5"/><circle cx="228" cy="147" r="3"/><circle cx="215" cy="148" r="3"/>
+    <circle cx="113" cy="205" r="4"/><circle cx="207" cy="205" r="4"/>
+  </g>
+  <g fill="#E9FFFC" opacity="0.86">
+    <path d="M65 118L72 113L78 118L71 121Z"/>
+    <path d="M255 118L248 113L242 118L249 121Z"/>
+    <path d="M53 178L62 174L68 180L58 182Z"/>
+    <path d="M267 178L258 174L252 180L262 182Z"/>
+    <circle cx="71" cy="218" r="3"/><circle cx="249" cy="218" r="3"/>
+  </g>
+</svg>

@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Frost Oracle</title>
+  <desc id="desc">A top-down ice seer with a broad glacier mantle, crystal crown, prophetic snow-dial, and a cold staff that marks slowing fields.</desc>
+  <defs>
+    <linearGradient id="robe" x1="49" y1="42" x2="139" y2="174" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9FE2E9"/>
+      <stop offset="0.24" stop-color="#3F8995"/>
+      <stop offset="0.6" stop-color="#174755"/>
+      <stop offset="1" stop-color="#071722"/>
+    </linearGradient>
+    <linearGradient id="ice" x1="51" y1="22" x2="141" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.2" stop-color="#C9FAFF"/>
+      <stop offset="0.48" stop-color="#6BC5D7"/>
+      <stop offset="0.76" stop-color="#2D7188"/>
+      <stop offset="1" stop-color="#102D44"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="134" y1="23" x2="158" y2="162" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.22" stop-color="#A8E3E8"/>
+      <stop offset="0.5" stop-color="#376D7A"/>
+      <stop offset="0.75" stop-color="#102A39"/>
+      <stop offset="1" stop-color="#D8F9FA"/>
+    </linearGradient>
+    <radialGradient id="oracleGlow" cx="0" cy="0" r="1" gradientTransform="translate(94 99) rotate(90) scale(34)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.18" stop-color="#DBFCFF"/>
+      <stop offset="0.48" stop-color="#76D5E4" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#76D5E4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="frostGrain" width="18" height="18" patternUnits="userSpaceOnUse">
+      <path d="M9 1V17M1 9H17M3 3L15 15M15 3L3 15" stroke="#E8FFFF" stroke-opacity="0.08"/>
+      <circle cx="9" cy="9" r="2" fill="#FFFFFF" fill-opacity="0.08"/>
+    </pattern>
+    <filter id="iceGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="robeClip">
+      <path d="M94 48C67 46 46 59 40 83L15 109L43 112L31 140L63 132L66 172L94 153L123 173L125 132L158 140L145 112L174 108L148 82C140 58 121 46 94 48Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="96" cy="158" rx="72" ry="22" fill="#01070B" fill-opacity="0.72"/>
+  <ellipse cx="95" cy="154" rx="55" ry="14" fill="#174A58" fill-opacity="0.42" stroke="#B9EEF1" stroke-opacity="0.25" stroke-width="2"/>
+
+  <!-- Prophetic frost dial is a mechanic marker, not decoration. -->
+  <g fill="none" stroke-linecap="round">
+    <circle cx="94" cy="101" r="72" stroke="#8ADBE6" stroke-opacity="0.16" stroke-width="8"/>
+    <path d="M37 58A72 72 0 0 1 73 32M116 32A72 72 0 0 1 152 58M165 118A72 72 0 0 1 141 153M48 153A72 72 0 0 1 25 118" stroke="#CFFBFF" stroke-opacity="0.58" stroke-width="3" stroke-dasharray="15 11" filter="url(#iceGlow)"/>
+    <circle cx="94" cy="101" r="61" stroke="#040B10" stroke-width="3" stroke-dasharray="5 13"/>
+  </g>
+  <g fill="#E9FFFF" filter="url(#softGlow)">
+    <path d="M32 66L37 57L42 66L37 74Z"/>
+    <path d="M146 66L152 57L157 66L152 74Z"/>
+    <path d="M21 111L26 102L31 111L26 119Z"/>
+    <path d="M157 111L163 102L168 111L163 119Z"/>
+  </g>
+
+  <!-- Wide glacial mantle and snow-broken hem. -->
+  <path d="M94 48C67 46 46 59 40 83L15 109L43 112L31 140L63 132L66 172L94 153L123 173L125 132L158 140L145 112L174 108L148 82C140 58 121 46 94 48Z" fill="url(#robe)" stroke="#02090E" stroke-width="7" stroke-linejoin="round"/>
+  <g clip-path="url(#robeClip)">
+    <rect x="12" y="43" width="166" height="134" fill="url(#frostGrain)"/>
+    <path d="M18 104C48 88 72 91 94 104C117 118 140 113 169 96V126C143 139 117 136 94 124C70 112 49 116 23 130Z" fill="#D9FCFF" fill-opacity="0.15"/>
+    <path d="M94 67L62 149M95 68L94 155M98 68L127 150" stroke="#08212C" stroke-width="7" stroke-linecap="round"/>
+    <path d="M89 70L62 137M103 70L128 137" stroke="#D5F8FA" stroke-opacity="0.3" stroke-width="2"/>
+    <path d="M34 136C56 126 75 131 94 143C113 155 134 145 154 136" stroke="#F0FFFF" stroke-opacity="0.28" stroke-width="4"/>
+  </g>
+  <g fill="url(#ice)" stroke="#02090E" stroke-width="4" stroke-linejoin="round">
+    <path d="M20 108L39 88L53 98L40 113Z"/>
+    <path d="M168 108L149 88L135 98L148 113Z"/>
+    <path d="M37 137L55 119L65 131L48 141Z"/>
+    <path d="M151 137L133 119L123 131L140 141Z"/>
+  </g>
+  <path d="M24 107L39 96M164 107L149 96M42 135L55 126M146 135L133 126" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Ice crown and veiled face. -->
+  <path d="M94 29C75 29 61 44 62 62L72 83L94 94L116 83L127 62C127 43 113 29 94 29Z" fill="#174454" stroke="#02090E" stroke-width="7"/>
+  <path d="M66 49L55 24L76 38L81 13L95 36L109 12L113 38L135 23L123 52L113 66H75Z" fill="url(#ice)" stroke="#02090E" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M62 28L75 44M80 20L86 45M108 20L103 45M128 28L114 44" stroke="#FFFFFF" stroke-opacity="0.66" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M73 56C83 49 105 49 116 56L111 73C102 80 87 80 78 73Z" fill="#06131C" stroke="#5D9DAA" stroke-opacity="0.55" stroke-width="3"/>
+  <path d="M79 60L91 56L89 68L77 68ZM110 60L98 56L100 68L112 68Z" fill="#DFFFFF" filter="url(#iceGlow)"/>
+  <circle cx="85" cy="62" r="2" fill="#FFFFFF"/><circle cx="104" cy="62" r="2" fill="#FFFFFF"/>
+  <path d="M87 74L94 82L102 74" stroke="#9EE3EA" stroke-width="2"/>
+
+  <!-- Rotating oracle disk on the chest. -->
+  <path d="M66 89L94 76L123 89L118 123L94 139L70 123Z" fill="#0B2733" stroke="#02090E" stroke-width="5"/>
+  <circle cx="94" cy="106" r="31" fill="url(#oracleGlow)"/>
+  <circle cx="94" cy="106" r="23" fill="#123B49" stroke="#B9F2F4" stroke-width="3" stroke-dasharray="8 5"/>
+  <path d="M94 86V126M74 106H114M80 92L108 120M108 92L80 120" stroke="#BCEFF2" stroke-opacity="0.6" stroke-width="2"/>
+  <path d="M94 90L103 104L94 121L85 106Z" fill="url(#ice)" stroke="#E9FFFF" stroke-width="2" filter="url(#iceGlow)"/>
+  <circle cx="94" cy="106" r="5" fill="#FFFFFF"/>
+
+  <!-- Staff and hovering frozen hourglass. -->
+  <path d="M142 153L145 62L153 25L160 63L156 154Z" fill="url(#silver)" stroke="#02090E" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M151 37L150 145" stroke="#FFFFFF" stroke-opacity="0.72" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M151 14L162 30L153 46L141 30Z" fill="url(#ice)" stroke="#02090E" stroke-width="4" filter="url(#iceGlow)"/>
+  <path d="M146 25H158M146 35H158" stroke="#FFFFFF" stroke-opacity="0.72" stroke-width="2"/>
+  <path d="M148 25L156 35M156 25L148 35" stroke="#4F9FAE" stroke-width="2"/>
+  <circle cx="152" cy="30" r="3" fill="#FFFFFF"/>
+  <path d="M138 151L161 153L160 163L137 161Z" fill="#123744" stroke="#02090E" stroke-width="4"/>
+
+  <!-- Hands, runes, and snow sparks. -->
+  <path d="M58 92L43 101L49 116L66 107Z" fill="#1B5360" stroke="#02090E" stroke-width="4"/>
+  <path d="M129 92L142 101L136 116L120 107Z" fill="#1B5360" stroke="#02090E" stroke-width="4"/>
+  <circle cx="53" cy="106" r="7" fill="#BEEFF1" stroke="#11313D" stroke-width="3"/>
+  <circle cx="134" cy="106" r="7" fill="#BEEFF1" stroke="#11313D" stroke-width="3"/>
+  <g stroke="#DFFFFF" stroke-linecap="round" filter="url(#softGlow)">
+    <path d="M60 120L68 115L75 122L82 116" stroke-width="3"/>
+    <path d="M128 120L120 115L113 122L106 116" stroke-width="3"/>
+    <path d="M75 143L82 136M114 143L107 136" stroke-width="2.5"/>
+  </g>
+  <g fill="#F3FFFF">
+    <path d="M20 128L24 122L28 128L24 134Z"/>
+    <path d="M168 128L164 122L160 128L164 134Z"/>
+    <circle cx="57" cy="151" r="2.5"/><circle cx="132" cy="151" r="2.5"/>
+  </g>
+</svg>

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="280" viewBox="0 0 240 280" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Mirror Harbor lighthouse</title>
+  <desc id="desc">A salt-eaten dark fantasy harbor beacon seen from a high angle, with an ink-teal stone tower, coral braces, and a cold-white lantern chamber.</desc>
+  <defs>
+    <linearGradient id="tower" x1="68" y1="93" x2="174" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#376968"/>
+      <stop offset="0.28" stop-color="#173F41"/>
+      <stop offset="0.62" stop-color="#092628"/>
+      <stop offset="1" stop-color="#020E10"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="82" y1="23" x2="158" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F27970"/>
+      <stop offset="0.38" stop-color="#A63A38"/>
+      <stop offset="1" stop-color="#321217"/>
+    </linearGradient>
+    <radialGradient id="lantern" cx="0" cy="0" r="1" gradientTransform="translate(120 89) rotate(90) scale(48 61)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.16" stop-color="#E2FFFC"/>
+      <stop offset="0.42" stop-color="#73CDC6" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#73CDC6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="88" y1="68" x2="154" y2="117" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9FFFC" stop-opacity="0.72"/>
+      <stop offset="0.3" stop-color="#77BBB7" stop-opacity="0.36"/>
+      <stop offset="0.72" stop-color="#123C3E" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#D9FFFA" stop-opacity="0.48"/>
+    </linearGradient>
+    <pattern id="masonry" width="44" height="28" patternUnits="userSpaceOnUse">
+      <path d="M0 1H44M0 27H44M22 1V14M0 14H44M8 14V27M37 14V27" stroke="#A4CECA" stroke-opacity="0.13" stroke-width="1.5"/>
+      <path d="M0 4H44M0 17H44" stroke="#01090B" stroke-opacity="0.18" stroke-width="3"/>
+    </pattern>
+    <pattern id="salt" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="7" cy="10" r="2" fill="#E2F8F5" fill-opacity="0.16"/>
+      <circle cx="29" cy="24" r="1.4" fill="#E2F8F5" fill-opacity="0.14"/>
+      <path d="M13 30l5-3 4 2-4 3zM25 7l3-2 3 3z" fill="#E2F8F5" fill-opacity="0.12"/>
+    </pattern>
+    <filter id="coldGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="redGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="towerClip">
+      <path d="M84 112L156 112L178 244L158 263H82L62 244Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="123" cy="251" rx="94" ry="26" fill="#010607" fill-opacity="0.72"/>
+  <path d="M38 243L67 222H173L205 244L180 270H62Z" fill="#031012" stroke="#010607" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M48 241L71 226H170L194 243L175 260H66Z" fill="#163B3D" stroke="#739C99" stroke-opacity="0.62" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M66 243H176M81 228L67 259M160 228L174 259" stroke="#A8D2CE" stroke-opacity="0.22" stroke-width="3"/>
+  <path d="M55 248H187" stroke="#F2FFFD" stroke-opacity="0.2" stroke-width="2"/>
+
+  <!-- Tapered salt-stone tower. -->
+  <path d="M84 112L156 112L178 244L158 263H82L62 244Z" fill="url(#tower)" stroke="#01080A" stroke-width="9" stroke-linejoin="round"/>
+  <g clip-path="url(#towerClip)">
+    <rect x="58" y="108" width="124" height="159" fill="url(#masonry)"/>
+    <rect x="58" y="108" width="124" height="159" fill="url(#salt)"/>
+    <path d="M68 119L92 119L78 250H63Z" fill="#B3DEDA" fill-opacity="0.12"/>
+    <path d="M147 112L161 117L176 245L158 261L143 258Z" fill="#010A0C" fill-opacity="0.36"/>
+    <path d="M66 200C94 190 111 198 126 204C145 211 158 207 171 199V240C148 247 134 243 119 237C101 229 85 231 66 241Z" fill="#4C8985" fill-opacity="0.12"/>
+  </g>
+
+  <!-- Coral iron bands hold the cracked masonry together. -->
+  <path d="M72 146L164 146L168 164L69 164Z" fill="#381418" stroke="#010708" stroke-width="5"/>
+  <path d="M71 149L164 149" stroke="#EF655B" stroke-width="4" filter="url(#redGlow)"/>
+  <path d="M75 208L172 208L175 225L72 225Z" fill="#351317" stroke="#010708" stroke-width="5"/>
+  <path d="M76 211L172 211" stroke="#E65A53" stroke-width="4" filter="url(#redGlow)"/>
+  <g fill="#FFD0CA" stroke="#2E1013" stroke-width="2">
+    <circle cx="80" cy="155" r="4"/><circle cx="153" cy="155" r="4"/>
+    <circle cx="84" cy="217" r="4"/><circle cx="163" cy="217" r="4"/>
+  </g>
+
+  <!-- Door and narrow observation slits. -->
+  <path d="M101 205C101 190 109 181 120 181C131 181 140 190 140 205V253H101Z" fill="#020B0D" stroke="#5D8F8B" stroke-width="4"/>
+  <path d="M108 205C108 195 113 190 120 190C127 190 133 195 133 205V249H108Z" fill="#0D3032"/>
+  <path d="M112 200L128 200M111 214L129 214M111 228L129 228" stroke="#A8D3CF" stroke-opacity="0.24" stroke-width="2"/>
+  <circle cx="128" cy="222" r="3" fill="#EF655B" filter="url(#redGlow)"/>
+  <path d="M84 174L96 171L98 187L86 190Z" fill="#D9FFFA" fill-opacity="0.7" stroke="#01090B" stroke-width="3"/>
+  <path d="M144 171L156 174L154 190L142 187Z" fill="#D9FFFA" fill-opacity="0.45" stroke="#01090B" stroke-width="3"/>
+
+  <!-- Broken cracks and shell growth. -->
+  <g stroke="#01090B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M91 120L99 134L94 145L102 157L97 173"/>
+    <path d="M148 126L141 138L146 149L138 163"/>
+    <path d="M83 181L91 190L86 201M153 229L145 238L150 251"/>
+  </g>
+  <g stroke="#D5F4F0" stroke-opacity="0.36" stroke-width="2" stroke-linecap="round">
+    <path d="M94 120L102 133M145 126L138 137M80 180L88 189"/>
+  </g>
+  <g fill="#78A9A5" stroke="#01090B" stroke-width="2">
+    <circle cx="68" cy="220" r="6"/><circle cx="72" cy="230" r="4"/><circle cx="64" cy="232" r="3"/>
+    <circle cx="170" cy="188" r="5"/><circle cx="167" cy="197" r="3"/>
+  </g>
+
+  <!-- Lantern gallery viewed from above. -->
+  <ellipse cx="120" cy="121" rx="58" ry="22" fill="#010708" fill-opacity="0.62"/>
+  <path d="M65 111L75 101H165L176 111L169 126H71Z" fill="#123638" stroke="#010708" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M70 111H171M77 102L72 124M164 102L169 124" stroke="#91BAB6" stroke-opacity="0.58" stroke-width="3"/>
+  <path d="M58 111H182M62 117H178" stroke="#D9FFFA" stroke-opacity="0.34" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#0A292B" stroke="#010708" stroke-width="3">
+    <circle cx="61" cy="113" r="6"/><circle cx="179" cy="113" r="6"/>
+    <circle cx="83" cy="124" r="5"/><circle cx="157" cy="124" r="5"/>
+  </g>
+
+  <!-- Glass room and the last light. -->
+  <path d="M82 62L158 62L166 105L155 115H85L74 105Z" fill="url(#glass)" stroke="#01080A" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M88 68L152 68L157 101L150 108H91L83 101Z" fill="url(#lantern)" filter="url(#coldGlow)"/>
+  <path d="M91 64L88 108M110 63L108 112M130 63L132 112M150 64L153 107" stroke="#0B2C2F" stroke-width="5"/>
+  <path d="M92 66L90 106M111 65L110 109M129 65L131 109M149 66L151 105" stroke="#E4FFFC" stroke-opacity="0.68" stroke-width="2"/>
+  <path d="M75 86H165" stroke="#E8FFFC" stroke-opacity="0.46" stroke-width="3"/>
+  <path d="M111 102L114 78L120 70L126 78L129 102Z" fill="#F8FFFE" stroke="#5AB8B2" stroke-width="3" filter="url(#coldGlow)"/>
+  <path d="M120 75L124 87L120 99L116 87Z" fill="#FFFFFF"/>
+  <circle cx="120" cy="88" r="6" fill="#FFFFFF"/>
+
+  <!-- Coral roof and lightning rod. -->
+  <path d="M73 66L93 36L120 23L148 36L168 66L151 75H88Z" fill="url(#roof)" stroke="#010708" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M82 64L99 42L120 32L141 42L158 64L148 67H91Z" fill="#5B2326"/>
+  <path d="M99 42L91 65M120 32V68M141 42L149 65" stroke="#FF8B81" stroke-opacity="0.58" stroke-width="3"/>
+  <path d="M120 24V7" stroke="#DFFFFB" stroke-width="4" stroke-linecap="round"/>
+  <path d="M111 21L120 10L129 21" stroke="#02090B" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="120" cy="7" r="5" fill="#F6FFFD" stroke="#2F5E5B" stroke-width="2" filter="url(#coldGlow)"/>
+  <path d="M82 66C99 72 142 72 158 66" stroke="#FF9A90" stroke-width="3" filter="url(#redGlow)"/>
+
+  <!-- Compact light beams stay inside the sprite bounds. -->
+  <path d="M82 78L9 55L10 95L80 96Z" fill="#D9FFFA" fill-opacity="0.08"/>
+  <path d="M158 78L231 55L230 95L160 96Z" fill="#D9FFFA" fill-opacity="0.08"/>
+  <path d="M17 71L74 83M223 71L166 83" stroke="#ECFFFD" stroke-opacity="0.24" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- White salt rims and coral tide marks finish the silhouette. -->
+  <g stroke="#E0FBF8" stroke-linecap="round">
+    <path d="M69 238L83 248M171 238L157 248" stroke-opacity="0.42" stroke-width="3"/>
+    <path d="M70 167L80 170M160 170L169 168" stroke-opacity="0.28" stroke-width="2"/>
+    <path d="M80 127L93 130M147 130L160 127" stroke-opacity="0.36" stroke-width="2.5"/>
+  </g>
+  <path d="M66 236C88 228 104 235 121 240C138 245 155 242 175 233" stroke="#F0645B" stroke-opacity="0.55" stroke-width="4" stroke-dasharray="8 7"/>
+</svg>

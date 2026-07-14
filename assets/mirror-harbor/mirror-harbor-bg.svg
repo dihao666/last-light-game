@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Mirror Harbor battleground</title>
+  <desc id="desc">A top-down dark fantasy harbor of ink teal water, salt-scored stone, coral warning lights, and cold white tidal reflections.</desc>
+  <defs>
+    <linearGradient id="water" x1="116" y1="20" x2="1182" y2="705" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#031013"/>
+      <stop offset="0.46" stop-color="#08282C"/>
+      <stop offset="1" stop-color="#020B0E"/>
+    </linearGradient>
+    <radialGradient id="deepPool" cx="0" cy="0" r="1" gradientTransform="translate(638 362) rotate(90) scale(356 598)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123A3C" stop-opacity="0.78"/>
+      <stop offset="0.56" stop-color="#071A1D" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#020A0C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="quay" x1="156" y1="91" x2="1101" y2="677" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17373A"/>
+      <stop offset="0.38" stop-color="#0C2528"/>
+      <stop offset="0.72" stop-color="#123033"/>
+      <stop offset="1" stop-color="#071719"/>
+    </linearGradient>
+    <linearGradient id="wetStone" x1="640" y1="128" x2="640" y2="662" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2C4C4D" stop-opacity="0.64"/>
+      <stop offset="0.45" stop-color="#132F31" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#071416" stop-opacity="0.65"/>
+    </linearGradient>
+    <radialGradient id="coralGlow" cx="0" cy="0" r="1" gradientTransform="translate(0 0) rotate(90) scale(1)">
+      <stop stop-color="#FFB4A8"/>
+      <stop offset="0.26" stop-color="#F25F56" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#F25F56" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="waterLines" width="116" height="62" patternUnits="userSpaceOnUse">
+      <path d="M-18 15C3 3 32 6 48 16C69 29 94 28 132 8" stroke="#9FE7E2" stroke-opacity="0.11" stroke-width="2"/>
+      <path d="M-10 43C20 34 39 48 63 45C83 43 102 31 126 34" stroke="#D7FFFF" stroke-opacity="0.07" stroke-width="1.5"/>
+      <path d="M18 26L41 23M76 55L103 50" stroke="#3D8B89" stroke-opacity="0.18" stroke-width="1"/>
+    </pattern>
+    <pattern id="stoneHatch" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(9)">
+      <path d="M0 8H32M0 24H32" stroke="#071517" stroke-opacity="0.18" stroke-width="5"/>
+      <path d="M0 7H32M0 23H32" stroke="#6D9C9A" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <pattern id="cobbles" width="96" height="64" patternUnits="userSpaceOnUse">
+      <path d="M4 4H42L48 11L43 30H7L1 23ZM50 5H91L97 16L88 31H54L47 22ZM-8 37H28L38 48L31 64H-8ZM36 36H78L84 45L78 62H40L32 52ZM84 36H105V64H82L77 51Z" stroke="#6B9693" stroke-opacity="0.13" stroke-width="1.4"/>
+      <path d="M9 7H38M56 8H86M41 40H73" stroke="#B9D9D4" stroke-opacity="0.06"/>
+    </pattern>
+    <pattern id="saltSpeckle" width="70" height="70" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="17" r="1.5" fill="#D8F4EF" fill-opacity="0.18"/>
+      <circle cx="43" cy="9" r="1" fill="#D8F4EF" fill-opacity="0.12"/>
+      <circle cx="59" cy="47" r="2" fill="#D8F4EF" fill-opacity="0.1"/>
+      <path d="M19 55l5-3 4 3-5 2zM51 27l3-2 3 2-3 2z" fill="#D8F4EF" fill-opacity="0.11"/>
+    </pattern>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="quayClip">
+      <path d="M176 83L1114 83L1190 169L1160 576L1080 655L839 696H386L166 653L92 575L93 184Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#water)"/>
+  <rect width="1280" height="720" fill="url(#deepPool)"/>
+  <rect width="1280" height="720" fill="url(#waterLines)"/>
+
+  <!-- Mirror-tide reflections at the harbor perimeter. -->
+  <g fill="#D8FFFB" opacity="0.2">
+    <path d="M0 97C78 84 121 88 190 107L177 116C112 105 69 106 0 121Z"/>
+    <path d="M1087 36C1168 50 1216 46 1280 30V52C1219 66 1159 66 1090 53Z"/>
+    <path d="M0 639C72 626 116 633 184 659L166 669C100 648 65 651 0 664Z"/>
+    <path d="M1110 663C1173 641 1227 643 1280 660V683C1213 665 1171 671 1117 690Z"/>
+  </g>
+  <g stroke="#E5FFFC" stroke-linecap="round">
+    <path d="M19 150C76 143 116 146 157 158" stroke-opacity="0.38" stroke-width="3"/>
+    <path d="M1113 101C1165 92 1212 98 1262 113" stroke-opacity="0.32" stroke-width="2"/>
+    <path d="M22 592C83 583 128 592 171 610" stroke-opacity="0.25" stroke-width="2"/>
+    <path d="M1117 606C1170 587 1217 592 1264 610" stroke-opacity="0.3" stroke-width="3"/>
+  </g>
+
+  <!-- Main quay: irregular silhouette and salt-white edge. -->
+  <path d="M176 83L1114 83L1190 169L1160 576L1080 655L839 696H386L166 653L92 575L93 184Z" fill="#020A0C" stroke="#020709" stroke-width="26" stroke-linejoin="bevel"/>
+  <path d="M176 83L1114 83L1190 169L1160 576L1080 655L839 696H386L166 653L92 575L93 184Z" fill="url(#quay)" stroke="#6BA7A2" stroke-opacity="0.76" stroke-width="7" stroke-linejoin="bevel"/>
+  <g clip-path="url(#quayClip)">
+    <rect x="72" y="64" width="1136" height="649" fill="url(#stoneHatch)"/>
+    <rect x="72" y="64" width="1136" height="649" fill="url(#cobbles)"/>
+    <rect x="72" y="64" width="1136" height="649" fill="url(#saltSpeckle)"/>
+    <path d="M144 148C325 104 503 136 635 116C788 93 937 119 1145 155L1122 258C922 222 782 242 633 221C476 198 311 216 129 264Z" fill="url(#wetStone)" opacity="0.46"/>
+    <path d="M103 530C267 486 414 524 550 504C706 482 871 496 1167 536V683H94Z" fill="#020C0E" opacity="0.23"/>
+    <path d="M121 186L183 212L170 279L110 301M1161 185L1099 215L1115 285L1173 304M170 630L235 586L294 665M1114 626L1049 578L987 674" stroke="#DDFCF8" stroke-opacity="0.2" stroke-width="5"/>
+  </g>
+
+  <!-- Seawall blocks and tidal scarring. -->
+  <g fill="#071719" stroke="#416D6C" stroke-width="2">
+    <path d="M102 191L173 111L236 118L205 151L119 231Z"/>
+    <path d="M1051 112L1110 104L1176 178L1164 229L1091 151Z"/>
+    <path d="M108 520L183 598L244 658L179 636L104 574Z"/>
+    <path d="M1100 587L1160 523L1150 585L1076 646L1018 657Z"/>
+  </g>
+  <g stroke="#C7F4EF" stroke-opacity="0.38" stroke-width="3" stroke-linecap="round">
+    <path d="M105 204L177 125L222 128M1064 123L1104 116L1166 184M119 548L188 614L226 647M1092 608L1145 552"/>
+  </g>
+
+  <!-- Central arena remains readable while carrying the mirror-harbor motif. -->
+  <ellipse cx="640" cy="372" rx="381" ry="243" fill="#061A1D" fill-opacity="0.28" stroke="#7CB4B0" stroke-opacity="0.2" stroke-width="3"/>
+  <ellipse cx="640" cy="372" rx="307" ry="190" stroke="#B4E2DD" stroke-opacity="0.13" stroke-width="2" stroke-dasharray="21 17"/>
+  <path d="M334 372C421 324 492 335 562 365C621 390 682 393 748 358C816 322 887 328 946 370C868 347 810 367 749 398C683 432 608 427 548 399C476 365 413 357 334 372Z" fill="#6CC4BE" fill-opacity="0.08" stroke="#BDECE7" stroke-opacity="0.2" stroke-width="2"/>
+  <path d="M366 421C440 390 503 400 568 427C634 455 695 448 759 420C817 395 870 393 920 412" stroke="#D9FFFA" stroke-opacity="0.12" stroke-width="4" stroke-linecap="round"/>
+  <path d="M373 322C443 287 516 303 575 327C642 354 702 346 761 319C817 294 871 296 912 315" stroke="#5CABA7" stroke-opacity="0.16" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Lamp socket and navigation rose. -->
+  <g transform="translate(640 372)">
+    <circle r="73" fill="#020B0D" fill-opacity="0.3" stroke="#9FD4CF" stroke-opacity="0.24" stroke-width="4"/>
+    <circle r="55" fill="#123134" fill-opacity="0.2" stroke="#E5FFFC" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="6 8"/>
+    <path d="M0-79L11-31L0-18L-11-31ZM79 0L31 11L18 0L31-11ZM0 79L-11 31L0 18L11 31ZM-79 0L-31-11L-18 0L-31 11Z" fill="#98CBC7" fill-opacity="0.17"/>
+    <path d="M-45-45L-26-18M45-45L26-18M45 45L26 18M-45 45L-26 18" stroke="#EF655B" stroke-opacity="0.26" stroke-width="4"/>
+    <circle r="18" fill="#020A0C" stroke="#D4F7F3" stroke-opacity="0.38" stroke-width="3"/>
+    <circle r="6" fill="#F36A60" fill-opacity="0.5"/>
+  </g>
+
+  <!-- Coral-red channels fracture the cold stone without obscuring play. -->
+  <g stroke="#F25F56" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M252 183L279 207L270 237L311 266L300 307" stroke-opacity="0.45" stroke-width="5"/>
+    <path d="M1028 168L1001 202L1008 236L968 264L977 300" stroke-opacity="0.44" stroke-width="5"/>
+    <path d="M224 559L271 534L300 546L330 519" stroke-opacity="0.36" stroke-width="4"/>
+    <path d="M1052 548L1006 526L976 538L945 514" stroke-opacity="0.36" stroke-width="4"/>
+  </g>
+  <g fill="#FF8B7F" filter="url(#softGlow)">
+    <circle cx="252" cy="183" r="4"/><circle cx="300" cy="307" r="3"/>
+    <circle cx="1028" cy="168" r="4"/><circle cx="977" cy="300" r="3"/>
+    <circle cx="224" cy="559" r="3"/><circle cx="1052" cy="548" r="3"/>
+  </g>
+
+  <!-- Mooring machinery, chains, and battered harbor furniture. -->
+  <g stroke="#02090B" stroke-width="5">
+    <g transform="translate(208 244) rotate(-16)">
+      <ellipse cx="0" cy="8" rx="23" ry="12" fill="#02090B" opacity="0.55"/>
+      <circle r="14" fill="#19383A" stroke="#8BB9B5" stroke-width="3"/>
+      <circle r="5" fill="#030B0D"/>
+      <path d="M-8-12L-3-27H6L10-11" fill="#0B2427"/>
+    </g>
+    <g transform="translate(1072 249) rotate(14)">
+      <ellipse cx="0" cy="8" rx="23" ry="12" fill="#02090B" opacity="0.55"/>
+      <circle r="14" fill="#19383A" stroke="#8BB9B5" stroke-width="3"/>
+      <circle r="5" fill="#030B0D"/>
+      <path d="M-8-12L-3-27H6L10-11" fill="#0B2427"/>
+    </g>
+    <g transform="translate(244 540) rotate(12)">
+      <rect x="-27" y="-20" width="54" height="40" rx="3" fill="#10282A" stroke="#5D8582" stroke-width="3"/>
+      <path d="M-25-17L25 17M25-17L-25 17" stroke="#294B4C" stroke-width="4"/>
+      <path d="M-18-20V20M18-20V20" stroke="#02090B" stroke-width="3"/>
+    </g>
+    <g transform="translate(1044 535) rotate(-10)">
+      <rect x="-28" y="-19" width="56" height="38" rx="3" fill="#10282A" stroke="#5D8582" stroke-width="3"/>
+      <path d="M-26-16L26 16M26-16L-26 16" stroke="#294B4C" stroke-width="4"/>
+      <path d="M-18-19V19M18-19V19" stroke="#02090B" stroke-width="3"/>
+    </g>
+  </g>
+  <g stroke="#739D99" stroke-width="4" fill="none" opacity="0.62">
+    <path d="M217 258C177 302 177 350 216 388C244 416 239 456 215 482" stroke-dasharray="3 10" stroke-linecap="round"/>
+    <path d="M1061 264C1100 310 1100 355 1065 393C1038 423 1040 456 1062 485" stroke-dasharray="3 10" stroke-linecap="round"/>
+  </g>
+
+  <!-- Broken piers extending beyond the stone quay. -->
+  <g stroke="#02080A" stroke-width="8" stroke-linejoin="bevel">
+    <path d="M92 301L-29 267L-42 350L95 372Z" fill="#112B2D"/>
+    <path d="M1188 344L1322 317L1326 401L1179 414Z" fill="#112B2D"/>
+  </g>
+  <g stroke="#5A8582" stroke-width="3" opacity="0.7">
+    <path d="M78 311L-27 284M70 344L-36 323M1202 356L1319 335M1196 390L1323 370"/>
+  </g>
+  <g fill="#071416" stroke="#86AAA6" stroke-opacity="0.55" stroke-width="2">
+    <circle cx="62" cy="321" r="9"/><circle cx="16" cy="307" r="9"/><circle cx="50" cy="355" r="9"/>
+    <circle cx="1213" cy="365" r="9"/><circle cx="1260" cy="350" r="9"/><circle cx="1220" cy="400" r="9"/>
+  </g>
+
+  <!-- Harbor silhouettes: fish racks, wreckage, and coral warning buoys. -->
+  <g opacity="0.84">
+    <path d="M286 109L323 91L362 111L352 144L296 145Z" fill="#061315" stroke="#416B69" stroke-width="3"/>
+    <path d="M301 113L300 141M321 102L321 143M343 108L342 142" stroke="#A3CFCA" stroke-opacity="0.28" stroke-width="3"/>
+    <path d="M913 113L950 91L990 111L980 145L923 145Z" fill="#061315" stroke="#416B69" stroke-width="3"/>
+    <path d="M928 113L928 142M950 102L950 143M972 108L971 142" stroke="#A3CFCA" stroke-opacity="0.28" stroke-width="3"/>
+  </g>
+  <g transform="translate(73 90) rotate(-12)">
+    <path d="M-36 2C-14-14 18-14 40 1L31 13H-27Z" fill="#031012" stroke="#67908D" stroke-width="3"/>
+    <path d="M1-3V-47M1-40L27-18M1-34L-19-16" stroke="#779E9A" stroke-width="4"/>
+    <path d="M4-39L24-21L8-19Z" fill="#D9FFFA" fill-opacity="0.12"/>
+  </g>
+  <g transform="translate(1212 616) rotate(11)">
+    <path d="M-43 2C-17-16 20-15 45 1L34 15H-32Z" fill="#031012" stroke="#67908D" stroke-width="3"/>
+    <path d="M0-2V-51M0-43L26-20M0-37L-23-17" stroke="#779E9A" stroke-width="4"/>
+    <path d="M3-42L24-23L7-21Z" fill="#D9FFFA" fill-opacity="0.12"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="43" cy="450" r="17" fill="#F25F56" fill-opacity="0.13"/>
+    <circle cx="43" cy="450" r="5" fill="#FF8D82"/>
+    <circle cx="1239" cy="218" r="17" fill="#F25F56" fill-opacity="0.13"/>
+    <circle cx="1239" cy="218" r="5" fill="#FF8D82"/>
+  </g>
+  <g stroke="#EF655B" stroke-width="3" fill="#071719">
+    <path d="M43 456V480M32 480H54"/>
+    <path d="M1239 224V248M1228 248H1250"/>
+  </g>
+
+  <!-- Inked cracks and salt crust provide texture at the readable edges. -->
+  <g stroke="#02090B" stroke-width="4" stroke-linecap="round" opacity="0.78">
+    <path d="M384 116L401 149L389 174L415 198L407 226"/>
+    <path d="M813 118L797 148L809 170L784 198L793 224"/>
+    <path d="M376 653L400 625L391 594L423 572"/>
+    <path d="M849 659L827 626L838 598L809 573"/>
+    <path d="M159 402L202 413L225 399M1121 426L1084 411L1054 425"/>
+  </g>
+  <g stroke="#D8F4EF" stroke-width="2" stroke-linecap="round" opacity="0.3">
+    <path d="M392 116L409 148M806 119L790 146M384 652L406 626M841 658L820 628"/>
+    <path d="M149 285L169 289M1115 303L1137 298M179 489L205 483M1076 486L1100 491"/>
+  </g>
+
+  <!-- Thin vignette keeps UI and projectiles legible. -->
+  <path d="M0 0H1280V720H0Z" stroke="#010608" stroke-width="34"/>
+  <path d="M20 20H1260V700H20Z" stroke="#76AAA6" stroke-opacity="0.09" stroke-width="2"/>
+</svg>

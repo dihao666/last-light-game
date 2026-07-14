@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">The Night Keeper</title>
+  <desc id="desc">A top-down dark fantasy guardian in an ink-teal hood and weathered cloak, carrying a cold-white hand lamp and a coral-bound blade.</desc>
+  <defs>
+    <linearGradient id="cloak" x1="52" y1="56" x2="135" y2="174" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D4A4C"/>
+      <stop offset="0.38" stop-color="#0A292C"/>
+      <stop offset="1" stop-color="#031113"/>
+    </linearGradient>
+    <linearGradient id="hood" x1="72" y1="30" x2="111" y2="86" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B5A5B"/>
+      <stop offset="0.48" stop-color="#0C2B2E"/>
+      <stop offset="1" stop-color="#031012"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="132" y1="39" x2="156" y2="154" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0FFFC"/>
+      <stop offset="0.24" stop-color="#75A9A6"/>
+      <stop offset="0.56" stop-color="#173C3F"/>
+      <stop offset="1" stop-color="#D9FFFA"/>
+    </linearGradient>
+    <radialGradient id="lampCore" cx="0" cy="0" r="1" gradientTransform="translate(39 109) rotate(90) scale(21)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.18" stop-color="#D9FFFA"/>
+      <stop offset="0.5" stop-color="#70D3CC" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#70D3CC" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="clothGrain" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(13)">
+      <path d="M0 5H18M0 14H18" stroke="#B8E5E0" stroke-opacity="0.08"/>
+      <path d="M4 0V18M13 0V18" stroke="#010B0D" stroke-opacity="0.13"/>
+    </pattern>
+    <filter id="coldGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="coralGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="cloakClip">
+      <path d="M59 70C43 83 42 112 49 138L36 163L64 158L77 178L95 163L113 179L126 157L156 164L142 136C149 107 141 82 129 70L111 60H78Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="97" cy="159" rx="66" ry="24" fill="#010708" fill-opacity="0.62"/>
+  <ellipse cx="97" cy="158" rx="48" ry="13" fill="#071C1E" fill-opacity="0.58" stroke="#679894" stroke-opacity="0.16" stroke-width="2"/>
+
+  <!-- Boots and cloak tails establish the south-facing mass. -->
+  <path d="M71 144L83 151L79 177L62 181L59 170Z" fill="#020B0D" stroke="#153436" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M119 144L107 151L112 178L129 181L133 170Z" fill="#020B0D" stroke="#153436" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M59 70C43 83 42 112 49 138L36 163L64 158L77 178L95 163L113 179L126 157L156 164L142 136C149 107 141 82 129 70L111 60H78Z" fill="url(#cloak)" stroke="#01090B" stroke-width="7" stroke-linejoin="round"/>
+  <g clip-path="url(#cloakClip)">
+    <rect x="34" y="55" width="125" height="128" fill="url(#clothGrain)"/>
+    <path d="M55 78C70 90 82 94 95 94C111 94 123 88 137 77L147 108C127 119 111 124 94 124C75 124 60 117 44 106Z" fill="#3B6A69" fill-opacity="0.17"/>
+    <path d="M94 90L69 164M96 92L96 164M99 91L122 164" stroke="#071A1C" stroke-width="7" stroke-linecap="round"/>
+    <path d="M88 90L66 155M103 90L126 156" stroke="#6FA09C" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round"/>
+    <path d="M39 151C62 138 77 139 95 150C115 162 133 150 153 146" stroke="#D9FFFA" stroke-opacity="0.13" stroke-width="4"/>
+  </g>
+
+  <!-- Layered shoulders, designed to remain readable at small game scale. -->
+  <path d="M77 64C63 59 45 69 38 88L54 101L75 87Z" fill="#123638" stroke="#020A0C" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M113 63C129 58 147 69 154 88L139 102L115 87Z" fill="#123638" stroke="#020A0C" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M48 85L65 73L72 84L55 96Z" fill="#2D5B5B" stroke="#8CB5B1" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M143 84L126 72L118 84L137 96Z" fill="#2D5B5B" stroke="#8CB5B1" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M46 82L59 78M132 77L146 83" stroke="#E1FFFC" stroke-opacity="0.56" stroke-width="3" stroke-linecap="round"/>
+  <path d="M54 97L45 116L55 130L68 108Z" fill="#061B1D" stroke="#02090B" stroke-width="5"/>
+  <path d="M138 97L148 116L137 132L125 108Z" fill="#061B1D" stroke="#02090B" stroke-width="5"/>
+
+  <!-- Coral oath sash and wax seals. -->
+  <path d="M65 75C83 88 105 101 133 115L126 130C98 115 77 101 57 87Z" fill="#B83F3A" stroke="#351315" stroke-width="4"/>
+  <path d="M62 79C81 91 103 104 129 117" stroke="#FF8D82" stroke-opacity="0.78" stroke-width="3" stroke-linecap="round"/>
+  <path d="M124 124L139 139L132 149L118 130Z" fill="#7D292A" stroke="#2C1012" stroke-width="3"/>
+  <circle cx="124" cy="122" r="8" fill="#F26057" stroke="#351315" stroke-width="3" filter="url(#coralGlow)"/>
+  <path d="M120 122L124 117L128 122L124 127Z" fill="#FFD0C9" fill-opacity="0.72"/>
+
+  <!-- Hood viewed from above, with a narrow cold-white face slit. -->
+  <path d="M95 22C79 23 67 36 65 53L73 76L94 89L116 76L125 53C120 35 110 23 95 22Z" fill="url(#hood)" stroke="#01090B" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M95 28C83 30 75 40 74 53L79 64L94 76L111 64L116 52C113 39 106 30 95 28Z" fill="#020B0D"/>
+  <path d="M79 50C87 43 103 43 111 50L107 62C99 67 89 67 81 62Z" fill="#082326" stroke="#5F8B88" stroke-opacity="0.55" stroke-width="2"/>
+  <path d="M85 54C91 51 99 51 106 54L102 59C96 61 91 60 87 59Z" fill="#DFFFFB" filter="url(#coldGlow)"/>
+  <circle cx="95" cy="56" r="2.5" fill="#FFFFFF"/>
+  <path d="M72 43L84 32M118 43L107 32" stroke="#9CC6C2" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M66 57L53 68M124 57L137 68" stroke="#02090B" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Left hand lamp. -->
+  <path d="M48 112C39 101 29 101 24 111C19 122 25 136 38 138C49 139 57 124 48 112Z" fill="#061719" stroke="#010708" stroke-width="6"/>
+  <path d="M31 105C31 93 38 87 45 94L49 105" stroke="#77A8A4" stroke-width="4" stroke-linecap="round"/>
+  <path d="M28 110L47 108L53 121L44 137L27 132L22 119Z" fill="#0A292B" stroke="#91C5C0" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M31 114L44 113L47 121L41 131L30 128L27 120Z" fill="url(#lampCore)" filter="url(#coldGlow)"/>
+  <path d="M34 113L33 130M43 113L42 130M27 120H48" stroke="#D9FFFA" stroke-opacity="0.55" stroke-width="1.8"/>
+  <circle cx="38" cy="121" r="3" fill="#FFFFFF"/>
+
+  <!-- Right-hand wickblade, bound with the same oath color. -->
+  <path d="M144 110L152 48L159 30L164 51L157 114Z" fill="url(#steel)" stroke="#01090B" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M155 39L155 102" stroke="#F1FFFD" stroke-opacity="0.72" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M138 111L162 115L160 125L136 121Z" fill="#B83F3A" stroke="#2F1012" stroke-width="3"/>
+  <path d="M144 121L154 123L149 155L139 153Z" fill="#062022" stroke="#02090B" stroke-width="4"/>
+  <path d="M141 130L151 135M140 140L150 145" stroke="#F36A60" stroke-width="2.5"/>
+  <circle cx="145" cy="155" r="6" fill="#0C2B2D" stroke="#A6D2CE" stroke-width="2"/>
+
+  <!-- Fine silhouette highlights and battle wear. -->
+  <g stroke-linecap="round">
+    <path d="M49 133L43 156M142 136L150 158" stroke="#BDE8E3" stroke-opacity="0.32" stroke-width="3"/>
+    <path d="M70 134L61 142M119 139L130 147M83 153L78 160" stroke="#D9FFFA" stroke-opacity="0.23" stroke-width="2"/>
+    <path d="M58 107L65 111M129 102L136 105" stroke="#EF655B" stroke-opacity="0.72" stroke-width="2.5"/>
+  </g>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Echo Duelist</title>
+  <desc id="desc">An angular lapis duelist with twin cyan-edged returning blades, a split mantle, and offset echo trails.</desc>
+  <defs>
+    <linearGradient id="mantle" x1="31" y1="25" x2="63" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#304E9D"/>
+      <stop offset="0.35" stop-color="#172B66"/>
+      <stop offset="0.72" stop-color="#0A1533"/>
+      <stop offset="1" stop-color="#030812"/>
+    </linearGradient>
+    <linearGradient id="armor" x1="39" y1="16" x2="58" y2="63" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7897FF"/>
+      <stop offset="0.28" stop-color="#3558B4"/>
+      <stop offset="0.68" stop-color="#152A66"/>
+      <stop offset="1" stop-color="#070D21"/>
+    </linearGradient>
+    <linearGradient id="echoBlade" x1="5" y1="15" x2="91" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4FFFF"/>
+      <stop offset="0.2" stop-color="#79F1F2"/>
+      <stop offset="0.48" stop-color="#408FEA"/>
+      <stop offset="0.76" stop-color="#3854C5"/>
+      <stop offset="1" stop-color="#C6FFFF"/>
+    </linearGradient>
+    <radialGradient id="echoCore" cx="0" cy="0" r="1" gradientTransform="translate(48 54) rotate(90) scale(16)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.25" stop-color="#96FFFF"/>
+      <stop offset="0.56" stop-color="#3C82E2" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#3C82E2" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="lapisGrain" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
+      <path d="M0 2H8M0 6H8" stroke="#C9E7FF" stroke-opacity="0.08" stroke-width="0.7"/>
+      <path d="M3 0V8" stroke="#01040B" stroke-opacity="0.24"/>
+    </pattern>
+    <filter id="cyanGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="mantleClip">
+      <path d="M48 23L33 29L27 47L18 60L31 59L27 82L43 70L48 89L53 70L69 82L65 59L78 60L69 47L63 29Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="48" cy="82" rx="39" ry="9" fill="#010409" fill-opacity="0.78"/>
+  <path d="M26 19L16 10L6 8M70 19L80 10L90 8" stroke="#3156C5" stroke-opacity="0.25" stroke-width="4" stroke-linecap="square"/>
+  <path d="M22 29L10 24L5 34M74 29L86 24L91 34" stroke="#66EDF2" stroke-opacity="0.2" stroke-width="3" stroke-dasharray="5 4"/>
+
+  <!-- The hooked blades and split tails keep the silhouette unmistakably angular. -->
+  <path d="M37 42L23 23C18 17 11 13 4 14C10 21 12 27 10 34L4 50C12 46 19 44 26 48L36 57L43 49Z" fill="url(#echoBlade)" stroke="#02050B" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M59 42L73 23C78 17 85 13 92 14C86 21 84 27 86 34L92 50C84 46 77 44 70 48L60 57L53 49Z" fill="url(#echoBlade)" stroke="#02050B" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M8 17C16 20 21 27 24 36L34 48M88 17C80 20 75 27 72 36L62 48" stroke="#FFFFFF" stroke-opacity="0.72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M10 42L20 39L28 43M86 42L76 39L68 43" stroke="#3B69D4" stroke-width="2"/>
+
+  <path d="M48 23L33 29L27 47L18 60L31 59L27 82L43 70L48 89L53 70L69 82L65 59L78 60L69 47L63 29Z" fill="url(#mantle)" stroke="#02050B" stroke-width="4" stroke-linejoin="round"/>
+  <g clip-path="url(#mantleClip)">
+    <rect x="17" y="21" width="62" height="70" fill="url(#lapisGrain)"/>
+    <path d="M24 53L48 42L72 53L66 64L48 57L30 64Z" fill="#4D76D7" fill-opacity="0.18"/>
+    <path d="M47 29L36 74M49 29L48 84M51 29L60 74" stroke="#050A18" stroke-width="4" stroke-linecap="round"/>
+    <path d="M40 34L33 68M56 34L63 68" stroke="#85B4FF" stroke-opacity="0.3" stroke-width="1.3"/>
+  </g>
+
+  <path d="M31 37L40 42L36 54L25 48Z" fill="#24458F" stroke="#02050B" stroke-width="2.5"/>
+  <path d="M65 37L56 42L60 54L71 48Z" fill="#24458F" stroke="#02050B" stroke-width="2.5"/>
+  <path d="M28 43L38 48M68 43L58 48" stroke="#7DEEF2" stroke-width="1.8" filter="url(#cyanGlow)"/>
+
+  <!-- Faceted helmet and bright echo visor. -->
+  <path d="M48 14L59 25L56 42L48 49L40 42L37 25Z" fill="url(#armor)" stroke="#02050B" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 18L55 27L52 38L48 42L44 38L41 27Z" fill="#071022" stroke="#5277D4" stroke-opacity="0.72" stroke-width="1.6"/>
+  <path d="M41 31L48 28L55 31L52 38L48 40L44 38Z" fill="#060B18" stroke="#6CA9E8" stroke-opacity="0.45" stroke-width="1.4"/>
+  <path d="M43 32L48 30L47 35L41 36ZM53 32L49 30L50 35L55 36Z" fill="url(#echoBlade)" filter="url(#cyanGlow)"/>
+  <path d="M48 10L44 16L48 19L52 16Z" fill="#B5FFFF" stroke="#02050B" stroke-width="1.8" filter="url(#cyanGlow)"/>
+
+  <!-- Echo engine doubles the central diamond without becoming a round body. -->
+  <path d="M36 48L48 42L60 48L57 63L48 69L39 63Z" fill="#0A1533" stroke="#02050B" stroke-width="3"/>
+  <path d="M48 44L57 53L48 64L39 53Z" fill="url(#echoCore)"/>
+  <path d="M48 46L55 53L48 62L41 53Z" fill="#294D9F" stroke="#6CECF1" stroke-width="1.5"/>
+  <path d="M45 49L50 51L47 59L42 54Z" fill="#F5FFFF" filter="url(#cyanGlow)"/>
+  <path d="M50 47L56 53L52 58" stroke="#7B96FF" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Grip blocks and echo sparks reinforce the paired-weapon read. -->
+  <path d="M34 46L42 51L38 57L30 51Z" fill="#111D43" stroke="#02050B" stroke-width="2"/>
+  <path d="M62 46L54 51L58 57L66 51Z" fill="#111D43" stroke="#02050B" stroke-width="2"/>
+  <path d="M33 49L39 53M63 49L57 53" stroke="#C6FFFF" stroke-width="1.5" filter="url(#cyanGlow)"/>
+  <g fill="#D9FFFF" filter="url(#cyanGlow)">
+    <path d="M14 58L18 54L21 58L17 62Z"/>
+    <path d="M82 58L78 54L75 58L79 62Z" fill="#819CFF"/>
+    <path d="M33 74L36 70L39 74L36 77Z" fill="#6094F0"/>
+    <path d="M63 74L60 70L57 74L60 77Z"/>
+  </g>
+</svg>
