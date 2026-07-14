@@ -124,6 +124,7 @@
   let selectedWeaponId = "tracker";
 
   const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+  const MASTER_VOLUME = 0.5;
   const soundscape = {
     context: null,
     master: null,
@@ -152,7 +153,7 @@
       if (!this.context) {
         this.context = new AudioContextConstructor();
         this.master = this.context.createGain();
-        this.master.gain.value = this.muted ? 0 : 0.28;
+        this.master.gain.value = this.muted ? 0 : MASTER_VOLUME;
         this.master.connect(this.context.destination);
       }
       if (this.context.state === "suspended") {
@@ -180,7 +181,7 @@
       this.muted = !this.muted;
       const context = this.ensure();
       if (context && this.master) {
-        this.master.gain.setTargetAtTime(this.muted ? 0 : 0.28, context.currentTime, 0.012);
+        this.master.gain.setTargetAtTime(this.muted ? 0 : MASTER_VOLUME, context.currentTime, 0.012);
       }
       this.syncButton();
       if (!this.muted) this.play("toggle", true);
@@ -227,13 +228,13 @@
       const variation = bossPressure ? 1.05946 : cycle % 4 === 3 ? 0.94387 : 1;
       const bass = pattern.bass[index];
       const lead = pattern.lead[index];
-      if (bass) this.tone(bass * variation, bass * variation * 0.997, 0.52, bossPressure ? 0.021 : 0.015, "sine");
+      if (bass) this.tone(bass * variation, bass * variation * 0.997, 0.52, bossPressure ? 0.065 : 0.05, "sine");
       if (lead) {
-        this.tone(lead * variation, lead * variation * 1.006, 0.26, bossPressure ? 0.012 : 0.008, "triangle", 0.035);
+        this.tone(lead * variation, lead * variation * 1.006, 0.26, bossPressure ? 0.042 : 0.032, "triangle", 0.035);
       }
       if (index % 8 === 7) {
         const root = this.musicTheme === "mirror-harbor" ? 220 : 261.63;
-        this.tone(root * variation, root * variation * 1.004, 0.48, 0.006, "sine", 0.08);
+        this.tone(root * variation, root * variation * 1.004, 0.48, 0.018, "sine", 0.08);
       }
       this.musicStep += 1;
     },
@@ -247,6 +248,8 @@
         musicPaused: this.musicPaused,
         musicTheme: this.musicTheme,
         musicStep: this.musicStep,
+        masterGain: this.master?.gain.value || 0,
+        lastHitAt: this.lastPlayed.hit || 0,
       };
     },
 
@@ -274,6 +277,7 @@
       const now = Date.now();
       const minGap = {
         shot: 120,
+        hit: 55,
         kill: 85,
         pickup: 75,
         damage: 150,
@@ -290,6 +294,9 @@
         this.tone(392, 588, 0.16, 0.018, "triangle", 0.07);
       } else if (name === "shot") {
         this.tone(720, 410, 0.045, 0.009, "square");
+      } else if (name === "hit") {
+        this.tone(180, 72, 0.065, 0.065, "square");
+        this.tone(980, 280, 0.045, 0.032, "triangle", 0.004);
       } else if (name === "kill") {
         this.tone(180, 82, 0.09, 0.022, "triangle");
       } else if (name === "pickup") {
@@ -5886,6 +5893,7 @@
     damageEnemy(enemy, amount, bullet) {
       if (this.ended || !enemy.active) return;
       const isBoss = enemy.getData("kind") === "boss";
+      soundscape.play("hit");
       const hitsVulnerability = isBoss && enemy.getData("attackState") === "recovering";
       let remainingDamage = hitsVulnerability ? Math.round(amount * 1.35) : amount;
       if (hitsVulnerability && this.gameplayTime >= this.bossVulnerabilityNoticeAt) {
