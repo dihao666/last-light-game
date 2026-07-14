@@ -1168,6 +1168,7 @@
       this.bossPreludeStarted = false;
       this.bossPreludeSecond = null;
       this.bossVulnerabilityNoticeAt = 0;
+      this.priorityTarget = null;
       this.overtimeStarted = false;
       this.wavePhase = 0;
       this.patrolEventIndex = 0;
@@ -3936,6 +3937,15 @@
         if (time >= boss.getData("pulseAt")) this.releaseBossPulse(boss, time);
         return;
       }
+      if (state === "phaseTransition") {
+        boss.setVelocity(0, 0);
+        if (time >= boss.getData("phaseTransitionUntil")) {
+          const transitionMode = boss.getData("phaseTransitionMode") || "refraction";
+          boss.setData({ phaseTransitionUntil: 0, phaseTransitionMode: null });
+          this.beginMirrorBossWarning(boss, time, transitionMode);
+        }
+        return;
+      }
       if (state === "mirrorWarning") {
         boss.setVelocity(0, 0);
         if (time >= boss.getData("attackAt")) this.releaseMirrorBossAttack(boss, time);
@@ -3985,12 +3995,23 @@
         boss.setData("specialIndex", specialIndex);
         if (this.battlefieldProfile.id === "mirror-harbor") {
           const bossBias = this.getRoute(this.finalRouteId)?.bossBias;
-          const modes = phase === 1
-            ? ["refraction", "lattice", "spiral"]
-            : phase === 2
-              ? ["lattice", "refraction", "cross", "spiral"]
-              : ["cross", "spiral", "lattice", "refraction"];
-          const biasOffset = bossBias === "charge" ? 1 : bossBias === "pulse" ? 0 : 2;
+          const modes = bossBias === "pulse"
+            ? (phase === 1
+              ? ["refraction", "spiral", "refraction"]
+              : phase === 2
+                ? ["refraction", "lattice", "spiral", "refraction"]
+                : ["spiral", "refraction", "cross", "spiral", "refraction"])
+            : bossBias === "charge"
+              ? (phase === 1
+                ? ["lattice", "spiral", "lattice"]
+                : phase === 2
+                  ? ["lattice", "cross", "refraction", "lattice"]
+                  : ["cross", "lattice", "cross", "spiral", "lattice"])
+              : (phase === 1
+                ? ["refraction", "lattice", "spiral"]
+                : phase === 2
+                  ? ["lattice", "refraction", "cross", "spiral"]
+                  : ["cross", "spiral", "lattice", "refraction"]);
           let activeAcolytes = 0;
           this.enemies.children.iterate((enemy) => {
             if (enemy?.active && enemy.getData("kind") === "mirrorAcolyte") activeAcolytes += 1;
@@ -3998,7 +4019,7 @@
           const summonReady = phase >= 2
             && time >= (boss.getData("nextSummonAt") || Number.POSITIVE_INFINITY)
             && activeAcolytes === 0;
-          const mirrorMode = summonReady ? "summon" : modes[(specialIndex - 1 + biasOffset) % modes.length];
+          const mirrorMode = summonReady ? "summon" : modes[(specialIndex - 1) % modes.length];
           this.beginMirrorBossWarning(boss, time, mirrorMode);
           return;
         }
@@ -4321,6 +4342,10 @@
     enterBossPhase(boss, phase, time) {
       if (!boss.active) return;
       const mirrorBoss = this.battlefieldProfile.id === "mirror-harbor";
+      const bossBias = this.getRoute(this.finalRouteId)?.bossBias;
+      const transitionMode = bossBias === "pulse"
+        ? (phase === 3 ? "spiral" : "refraction")
+        : (phase === 3 ? "cross" : "lattice");
       this.bossTelegraph.clear();
       boss.setData({
         phase,
@@ -4335,15 +4360,28 @@
       const title = mirrorBoss
         ? (phase === 3 ? "终相 · 双港退潮" : "二相 · 潮镜倒悬")
         : (phase === 3 ? "终相 · 吞灯" : "二相 · 暗潮");
+      const mirrorPhaseDetails = {
+        refraction: "折光航路展开 · 看清弹缝后横向穿行",
+        spiral: "潮镜轮舞加速 · 先向外换位再反击",
+        lattice: "三点棱阵成形 · 不要停在节点之间",
+        cross: "镜海裁光锁住十字航路 · 躲进四角空区",
+      };
       const detail = mirrorBoss
-        ? (phase === 3 ? "镜海裁光锁住十字航路 · 躲进四角空区" : "三点棱阵成形 · 不要停在节点之间")
+        ? mirrorPhaseDetails[transitionMode]
         : (phase === 3 ? "双重暗潮袭来 · 第二道缺口旋转九十度" : "青色引线标出缺口 · 按顺时针规律移动");
-      this.showPhaseBanner(mirrorBoss ? "潮镜圣母倒悬" : "吞灯者蜕变", title, detail);
-      this.cameras.main.flash(260, mirrorBoss ? (phase === 3 ? 255 : 67) : (phase === 3 ? 255 : 239), mirrorBoss ? (phase === 3 ? 109 : 217) : (phase === 3 ? 159 : 90), mirrorBoss ? (phase === 3 ? 121 : 208) : (phase === 3 ? 67 : 79), false);
+      const bannerY = mirrorBoss
+        ? Phaser.Math.Clamp(this.getBossEntryY() + 150, this.getPlayableTop() + 140, this.getPlayableBottom() - 90)
+        : null;
+      this.showPhaseBanner(mirrorBoss ? "潮镜圣母倒悬" : "吞灯者蜕变", title, detail, bannerY);
+      this.cameras.main.flash(mirrorBoss ? 130 : 260, mirrorBoss ? (phase === 3 ? 255 : 67) : (phase === 3 ? 255 : 239), mirrorBoss ? (phase === 3 ? 109 : 217) : (phase === 3 ? 159 : 90), mirrorBoss ? (phase === 3 ? 121 : 208) : (phase === 3 ? 67 : 79), false);
       this.cameras.main.shake(320, 0.01);
       soundscape.play("bossPhase", true);
       if (mirrorBoss) {
-        this.beginMirrorBossWarning(boss, time, phase === 3 ? "cross" : "lattice");
+        boss.setData({
+          attackState: "phaseTransition",
+          phaseTransitionUntil: time + 150,
+          phaseTransitionMode: transitionMode,
+        });
         return;
       }
       this.beginBossPulseWarning(boss, time, true);
@@ -5056,7 +5094,7 @@
       return true;
     }
 
-    showPhaseBanner(kicker, title, detail) {
+    showPhaseBanner(kicker, title, detail, positionY = null) {
       if (this.phaseBanner?.active) this.phaseBanner.destroy(true);
       const kickerText = this.add.text(0, -24, kicker, {
         fontFamily: "Georgia, serif",
@@ -5081,7 +5119,7 @@
       }).setOrigin(0.5);
       const banner = this.add.container(
         this.scale.width / 2,
-        Phaser.Math.Clamp(this.scale.height * 0.3, 235, 255),
+        Number.isFinite(positionY) ? positionY : Phaser.Math.Clamp(this.scale.height * 0.3, 235, 255),
         [kickerText, titleText, detailText],
       ).setAlpha(0).setDepth(40);
       this.phaseBanner = banner;
@@ -5680,35 +5718,43 @@
     fireAtNearest(time) {
       let nearest = null;
       let nearestDistance = Number.POSITIVE_INFINITY;
-      let nearestHerald = null;
-      let nearestHeraldDistance = Number.POSITIVE_INFINITY;
+      let nearestPriority = -1;
       const profile = this.weaponProfile;
-      this.enemies.children.iterate((enemy) => {
-        if (!enemy || !enemy.active) return;
-        const distance = Phaser.Math.Distance.Squared(this.player.x, this.player.y, enemy.x, enemy.y);
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearest = enemy;
-        }
-        if (enemy.getData("kind") === "herald" && distance < nearestHeraldDistance) {
-          nearestHeraldDistance = distance;
-          nearestHerald = enemy;
-        }
-      });
       const effectiveRange = profile.range + this.stats.rangeBonus;
       const rangeSquared = effectiveRange * effectiveRange;
       const patrolTarget = this.activePatrolEvent?.type === "rift" ? this.activePatrolEvent.target : null;
-      if (patrolTarget?.active) {
-        const patrolDistance = Phaser.Math.Distance.Squared(this.player.x, this.player.y, patrolTarget.x, patrolTarget.y);
-        if (patrolDistance <= rangeSquared) {
-          nearest = patrolTarget;
-          nearestDistance = patrolDistance;
+      this.enemies.children.iterate((enemy) => {
+        if (!enemy || !enemy.active) return;
+        const distance = Phaser.Math.Distance.Squared(this.player.x, this.player.y, enemy.x, enemy.y);
+        if (distance > rangeSquared) return;
+        const kind = enemy.getData("kind");
+        const attackState = enemy.getData("attackState");
+        const priority = enemy === patrolTarget
+          ? 4
+          : kind === "mirrorAcolyte"
+            ? 3
+            : kind === "herald" || (kind !== "boss" && attackState === "warning")
+              ? 2
+              : 0;
+        if (priority > nearestPriority || (priority === nearestPriority && distance < nearestDistance)) {
+          nearestPriority = priority;
+          nearestDistance = distance;
+          nearest = enemy;
         }
-      } else if (nearestHerald && nearestHeraldDistance <= rangeSquared) {
-        nearest = nearestHerald;
-        nearestDistance = nearestHeraldDistance;
+      });
+      if (!nearest) {
+        this.priorityTarget = null;
+        return;
       }
-      if (!nearest || nearestDistance > rangeSquared) return;
+
+      if (nearestPriority > 0 && this.priorityTarget !== nearest) {
+        this.priorityTarget = nearest;
+        const priorityColor = nearest.getData("kind") === "mirrorAcolyte" ? 0x43d9d0 : COLORS.gold;
+        this.spawnExpandingSigil(nearest.x, nearest.y, priorityColor, 48, 280);
+        this.showCombatLabel(nearest.x, nearest.y - 36, "优先锁定", priorityColor);
+      } else if (nearestPriority === 0) {
+        this.priorityTarget = null;
+      }
 
       this.lastShotAt = time;
       const baseAngle = Phaser.Math.Angle.Between(this.player.x, this.player.y, nearest.x, nearest.y);
