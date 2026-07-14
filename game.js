@@ -152,7 +152,7 @@
       if (!this.context) {
         this.context = new AudioContextConstructor();
         this.master = this.context.createGain();
-        this.master.gain.value = this.muted ? 0 : 0.22;
+        this.master.gain.value = this.muted ? 0 : 0.28;
         this.master.connect(this.context.destination);
       }
       if (this.context.state === "suspended") {
@@ -180,7 +180,7 @@
       this.muted = !this.muted;
       const context = this.ensure();
       if (context && this.master) {
-        this.master.gain.setTargetAtTime(this.muted ? 0 : 0.22, context.currentTime, 0.012);
+        this.master.gain.setTargetAtTime(this.muted ? 0 : 0.28, context.currentTime, 0.012);
       }
       this.syncButton();
       if (!this.muted) this.play("toggle", true);
@@ -5370,7 +5370,16 @@
         : "boss";
       const boss = this.enemies.create(x, y, bossTexture).setDepth(7);
       if (mirrorBoss && bossTexture !== "boss") boss.setDisplaySize(136, 136);
-      boss.body.setCircle(mirrorBoss ? 46 : 42, mirrorBoss ? 22 : 10, mirrorBoss ? 22 : 10);
+      if (mirrorBoss) {
+        const hitboxRadius = Math.min(boss.width, boss.height) * 0.4;
+        boss.body.setCircle(
+          hitboxRadius,
+          (boss.width - hitboxRadius * 2) / 2,
+          (boss.height - hitboxRadius * 2) / 2,
+        );
+      } else {
+        boss.body.setCircle(42, 10, 10);
+      }
       boss.body.checkCollision.none = true;
       boss.setVelocity(0, 175);
       const baseBossHealth = mirrorBoss ? 1900 + this.level * 65 : 2050 + this.level * 75;

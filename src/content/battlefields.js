@@ -41,7 +41,7 @@
       bossName: "潮镜圣母",
       bossSubtitle: "深港回声",
       bossTexture: "mirrorBossArt",
-      bossHealthScale: 1.3,
+      bossHealthScale: 1.5,
       finishMessage: "潮镜碎裂，第一束晨光落在退潮的港湾。",
       firstActObjective: "穿梭上下港并蓄满潮光 · 24 秒后选择远征路线",
       backgroundTexture: "mirrorHarborBackground",
