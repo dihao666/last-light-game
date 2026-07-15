@@ -4,7 +4,7 @@
   class MirrorHarborController {
     constructor(scene) {
       this.scene = scene;
-      this.nextSweepAt = 6800;
+      this.nextSweepAt = scene.runProfile?.id === "standard" ? 12000 : 6800;
       this.sweepIndex = 0;
       this.warning = null;
       this.ambient = [];
@@ -160,7 +160,11 @@
       this.warning = null;
       const bossBias = scene.getRoute(scene.finalRouteId)?.bossBias;
       const bossSweepDelay = bossBias === "charge" ? 4100 : bossBias === "pulse" ? 5700 : 5200;
-      this.nextSweepAt = time + (scene.bossAlive ? bossSweepDelay : 6600);
+      const routeTwoTime = scene.runProfile?.routeStageTwoTime || 24;
+      const routeThreeTime = scene.runProfile?.routeStageThreeTime || 50;
+      const phaseIndex = scene.elapsed < routeTwoTime ? 0 : scene.elapsed < routeThreeTime ? 1 : 2;
+      const standardSweepDelay = scene.runProfile?.mirrorSweepDelays?.[phaseIndex] || 6600;
+      this.nextSweepAt = time + (scene.bossAlive ? bossSweepDelay : standardSweepDelay);
     }
 
     resize() {

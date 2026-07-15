@@ -21,7 +21,7 @@
       bossTexture: "boss",
       bossHealthScale: 1.3,
       finishMessage: "吞灯者倒下，黎明提前穿过了城墙。",
-      firstActObjective: "自由猎行并蓄满火种 · 24 秒后选择远征路线",
+      firstActObjective: "自由猎行并蓄满火种",
       lampTexture: "lastLightBeacon",
     },
     {
@@ -43,7 +43,7 @@
       bossTexture: "mirrorBossArt",
       bossHealthScale: 1.5,
       finishMessage: "潮镜碎裂，第一束晨光落在退潮的港湾。",
-      firstActObjective: "穿梭上下港并蓄满潮光 · 24 秒后选择远征路线",
+      firstActObjective: "穿梭上下港并蓄满潮光",
       backgroundTexture: "mirrorHarborBackground",
       lampTexture: "lastLightBeacon",
       enemyTexture: "tideweaverArt",

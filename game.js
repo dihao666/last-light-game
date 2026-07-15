@@ -1,16 +1,102 @@
 (function () {
   "use strict";
 
-  const QA_MODE = new URLSearchParams(window.location.search).get("qa") === "1";
-  const RUN_DURATION = 100;
-  const BOSS_TIME = 78;
-  const BOSS_PRELUDE_DURATION = 6;
-  const ROUTE_STAGE_TWO_TIME = 24;
-  const ROUTE_STAGE_THREE_TIME = 50;
-  const PATROL_EVENT_SCHEDULE = [
-    { time: 32, type: "beacon" },
-    { time: 58, type: "rift" },
-  ];
+  const URL_PARAMS = new URLSearchParams(window.location.search);
+  const QA_MODE = URL_PARAMS.get("qa") === "1";
+  const QUICK_TIMING = QA_MODE && URL_PARAMS.get("qaTiming") === "quick";
+  const QUICK_RUN_PROFILE = Object.freeze({
+    id: "quick",
+    durationLabel: "一局约 100 秒",
+    runDuration: 100,
+    bossTime: 78,
+    bossPreludeDuration: 6,
+    routeStageTwoTime: 24,
+    routeStageThreeTime: 50,
+    patrolSchedule: [
+      { time: 32, type: "beacon" },
+      { time: 58, type: "rift" },
+    ],
+    scriptedThreats: {
+      opening: 18,
+      blink: 28,
+      route: 36,
+      frost: 42,
+      bomber: 54,
+      echo: 34,
+      void: 61,
+      prism: 65,
+      signature: 68,
+    },
+    spawnPhases: [
+      { until: 6, interval: 1080, cap: 5 },
+      { until: 12, interval: 1180, cap: 7 },
+      { until: 18, interval: 1080, cap: 8 },
+      { until: 24, interval: 990, cap: 10 },
+      { until: 40, interval: 950, cap: 12 },
+      { until: 50, interval: 810, cap: 15 },
+      { until: 66, interval: 850, cap: 17 },
+      { until: 78, interval: 760, cap: 22 },
+    ],
+    doubleSpawnAt: 40,
+    tideweaverAt: 18,
+    enemyTimings: {},
+    bossHealthMultiplier: 1,
+    mirrorSweepDelays: [6600, 6600, 6600],
+  });
+  const STANDARD_RUN_PROFILE = Object.freeze({
+    id: "standard",
+    durationLabel: "一局约 10 分钟",
+    runDuration: 600,
+    bossTime: 540,
+    bossPreludeDuration: 8,
+    routeStageTwoTime: 180,
+    routeStageThreeTime: 360,
+    patrolSchedule: [
+      { time: 210, type: "beacon" },
+      { time: 405, type: "rift" },
+    ],
+    scriptedThreats: {
+      opening: 35,
+      blink: 85,
+      echo: 140,
+      route: 215,
+      frost: 245,
+      bomber: 315,
+      void: 390,
+      prism: 445,
+      signature: 500,
+    },
+    spawnPhases: [
+      { until: 30, interval: 1320, cap: 5 },
+      { until: 60, interval: 1180, cap: 7 },
+      { until: 90, interval: 1080, cap: 8 },
+      { until: 180, interval: 990, cap: 10 },
+      { until: 270, interval: 950, cap: 12 },
+      { until: 360, interval: 860, cap: 15 },
+      { until: 450, interval: 820, cap: 17 },
+      { until: 540, interval: 760, cap: 22 },
+    ],
+    doubleSpawnAt: 270,
+    tideweaverAt: 90,
+    enemyTimings: {
+      blinkHunter: { unlockAt: 80, randomAt: 95 },
+      echoDuelist: { unlockAt: 135, randomAt: 150 },
+      frostOracle: { unlockAt: 235, randomAt: 255 },
+      emberBomber: { unlockAt: 300, randomAt: 325 },
+      voidScribe: { unlockAt: 380, randomAt: 400 },
+      prismSentry: { unlockAt: 430, randomAt: 450 },
+    },
+    bossHealthMultiplier: 4.5,
+    mirrorSweepDelays: [14000, 11000, 8000],
+  });
+  const RUN_PROFILE = QUICK_TIMING ? QUICK_RUN_PROFILE : STANDARD_RUN_PROFILE;
+  const RUN_DURATION = RUN_PROFILE.runDuration;
+  const BOSS_TIME = RUN_PROFILE.bossTime;
+  const BOSS_PRELUDE_DURATION = RUN_PROFILE.bossPreludeDuration;
+  const ROUTE_STAGE_TWO_TIME = RUN_PROFILE.routeStageTwoTime;
+  const ROUTE_STAGE_THREE_TIME = RUN_PROFILE.routeStageThreeTime;
+  const PATROL_EVENT_SCHEDULE = RUN_PROFILE.patrolSchedule;
+  const RUN_END_LABEL = `${String(Math.floor(RUN_DURATION / 60)).padStart(2, "0")}:${String(RUN_DURATION % 60).padStart(2, "0")}`;
   const DASH_COOLDOWN = 3400;
   const DASH_DURATION = 180;
   const DASH_INVULNERABILITY = 280;
@@ -19,6 +105,12 @@
   const UPGRADE_MIN_INTERVAL = 9000;
   const START_HOUR = 3;
   const END_HOUR = 6;
+
+  function formatRunTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+  }
 
   const COLORS = {
     night: 0x071012,
@@ -1126,6 +1218,7 @@
   class NightScene extends Phaser.Scene {
     constructor() {
       super({ key: "NightScene" });
+      this.runProfile = RUN_PROFILE;
     }
 
     preload() {
@@ -1945,7 +2038,7 @@
       ui.gameShell.dataset.battlefield = this.battlefieldProfile.id;
       ui.waveLabel.textContent = `第一幕 · ${this.battlefieldProfile.name}`;
       ui.objectiveText.textContent = "自由穿行 · 击退黑潮 · 蓄满随身火种";
-      ui.startEyebrow.textContent = `${this.battlefieldProfile.chapter} · 一局约 100 秒`;
+      ui.startEyebrow.textContent = `${this.battlefieldProfile.chapter} · ${RUN_PROFILE.durationLabel}`;
       ui.startDescription.textContent = this.battlefieldProfile.description;
       ui.endRoute.textContent = "远征路线 · 尚未记录";
       ui.endSeals.innerHTML = "";
@@ -2035,7 +2128,7 @@
       this.showPhaseBanner(
         `第一幕 · ${this.battlefieldProfile.name}`,
         this.battlefieldProfile.id === "mirror-harbor" ? "镜潮涨落" : "暗影苏醒",
-        this.battlefieldProfile.firstActObjective,
+        `${this.battlefieldProfile.firstActObjective} · ${formatRunTime(ROUTE_STAGE_TWO_TIME)} 后选择远征路线`,
       );
       this.time.delayedCall(350, () => this.spawnEnemy("shade"));
     }
@@ -2269,7 +2362,7 @@
 
       if (this.elapsed >= RUN_DURATION && this.bossAlive && !this.overtimeStarted) {
         this.overtimeStarted = true;
-        ui.waveLabel.textContent = "01:40 · 黎明决战";
+        ui.waveLabel.textContent = `${RUN_END_LABEL} · 黎明决战`;
         ui.objectiveText.textContent = `黎明已至 · 击败${this.battlefieldProfile.bossName}`;
         this.showPhaseBanner("黎明决战", "不再计时", "唯一失败条件 · 守夜人倒下");
         this.cameras.main.flash(260, 242, 200, 75, false);
@@ -4727,7 +4820,8 @@
     }
 
     updateWaveState() {
-      if (!this.bossPreludeStarted && this.elapsed >= 18 && !this.scriptedThreatsSpawned.has("opening-threat")) {
+      const threatTimes = RUN_PROFILE.scriptedThreats;
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.opening && !this.scriptedThreatsSpawned.has("opening-threat")) {
         this.scriptedThreatsSpawned.add("opening-threat");
         this.spawnEnemy(this.battlefieldProfile.signatureEnemy || "charger");
       }
@@ -4736,36 +4830,36 @@
       } else if (this.elapsed >= ROUTE_STAGE_TWO_TIME && this.wavePhase < 2) {
         if (this.showRouteChoice(2)) return;
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 28 && !this.scriptedThreatsSpawned.has("blink-intro")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.blink && !this.scriptedThreatsSpawned.has("blink-intro")) {
         this.scriptedThreatsSpawned.add("blink-intro");
         this.spawnEnemy("blinkHunter");
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 36 && !this.scriptedThreatsSpawned.has("route-threat")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.route && !this.scriptedThreatsSpawned.has("route-threat")) {
         this.scriptedThreatsSpawned.add("route-threat");
         const routeThreat = this.getRoute(this.activeRouteId)?.scriptedThreat || "herald";
         this.spawnEnemy(routeThreat);
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 42 && !this.scriptedThreatsSpawned.has("frost-intro")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.frost && !this.scriptedThreatsSpawned.has("frost-intro")) {
         this.scriptedThreatsSpawned.add("frost-intro");
         this.spawnEnemy("frostOracle");
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 54 && !this.scriptedThreatsSpawned.has("bomber-intro")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.bomber && !this.scriptedThreatsSpawned.has("bomber-intro")) {
         this.scriptedThreatsSpawned.add("bomber-intro");
         this.spawnEnemy("emberBomber");
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 34 && !this.scriptedThreatsSpawned.has("echo-duelist-intro")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.echo && !this.scriptedThreatsSpawned.has("echo-duelist-intro")) {
         this.scriptedThreatsSpawned.add("echo-duelist-intro");
         this.spawnEnemy("echoDuelist");
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 61 && !this.scriptedThreatsSpawned.has("void-scribe-intro")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.void && !this.scriptedThreatsSpawned.has("void-scribe-intro")) {
         this.scriptedThreatsSpawned.add("void-scribe-intro");
         this.spawnEnemy("voidScribe");
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 65 && !this.scriptedThreatsSpawned.has("prism-intro")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.prism && !this.scriptedThreatsSpawned.has("prism-intro")) {
         this.scriptedThreatsSpawned.add("prism-intro");
         this.spawnEnemy("prismSentry");
       }
-      if (!this.bossPreludeStarted && this.elapsed >= 68 && !this.scriptedThreatsSpawned.has("signature-enemy")) {
+      if (!this.bossPreludeStarted && this.elapsed >= threatTimes.signature && !this.scriptedThreatsSpawned.has("signature-enemy")) {
         const signatureEnemy = this.getRoute(this.activeRouteId)?.signatureEnemy;
         if (signatureEnemy) {
           this.scriptedThreatsSpawned.add("signature-enemy");
@@ -4789,7 +4883,7 @@
       if (!this.bossSpawned && !this.bossPreludeStarted && this.spawnAccumulator >= interval && this.enemies.countActive(true) < this.getEnemyCap()) {
         this.spawnAccumulator = 0;
         this.spawnEnemy(this.pickEnemyKind());
-        if (this.elapsed > 40 && Math.random() > 0.7 && this.enemies.countActive(true) < this.getEnemyCap()) {
+        if (this.elapsed > RUN_PROFILE.doubleSpawnAt && Math.random() > 0.7 && this.enemies.countActive(true) < this.getEnemyCap()) {
           this.spawnEnemy(this.pickEnemyKind());
         }
       }
@@ -4807,7 +4901,7 @@
       } else if (this.elapsed < RUN_DURATION) {
         ui.waveLabel.textContent = "终夜 · 等待黎明";
       } else {
-        ui.waveLabel.textContent = "01:40 · 黎明抵达";
+        ui.waveLabel.textContent = `${RUN_END_LABEL} · 黎明抵达`;
       }
     }
 
@@ -5147,32 +5241,31 @@
     }
 
     getSpawnInterval() {
-      let interval = 1320;
-      if (this.elapsed >= 6 && this.elapsed < 12) interval = 1180;
-      else if (this.elapsed < 18) interval = 1080;
-      else if (this.elapsed < ROUTE_STAGE_TWO_TIME) interval = 990;
-      else if (this.elapsed < 40) interval = 950;
-      else if (this.elapsed < ROUTE_STAGE_THREE_TIME) interval = 810;
-      else if (this.elapsed < 66) interval = 850;
-      else if (this.elapsed < BOSS_TIME) interval = 760;
+      const phase = RUN_PROFILE.spawnPhases.find((entry) => this.elapsed < entry.until)
+        || RUN_PROFILE.spawnPhases[RUN_PROFILE.spawnPhases.length - 1];
+      let interval = phase.interval;
       if (this.activePatrolEvent) interval *= 1.25;
       const route = this.getRoute(this.activeRouteId);
       return Math.round(interval * (route?.spawnRate || 1) * (this.battlefieldProfile.spawnRate || 1));
     }
 
     getEnemyCap() {
-      if (this.elapsed < 6) return 5;
-      if (this.elapsed < 12) return 7;
-      if (this.elapsed < 18) return 8;
-      if (this.elapsed < ROUTE_STAGE_TWO_TIME) return 10;
-      if (this.elapsed < 40) return 12;
-      if (this.elapsed < ROUTE_STAGE_THREE_TIME) return 15;
-      if (this.elapsed < 66) return 17;
-      return 22;
+      const phase = RUN_PROFILE.spawnPhases.find((entry) => this.elapsed < entry.until)
+        || RUN_PROFILE.spawnPhases[RUN_PROFILE.spawnPhases.length - 1];
+      return phase.cap;
+    }
+
+    getEnemyTiming(kind) {
+      const stats = enemyCatalog[kind] || {};
+      const override = RUN_PROFILE.enemyTimings[kind] || {};
+      return {
+        unlockAt: override.unlockAt ?? stats.unlockAt ?? 0,
+        randomAt: override.randomAt ?? stats.randomAt ?? override.unlockAt ?? stats.unlockAt ?? 0,
+      };
     }
 
     pickWeightedEnemy(weights) {
-      const available = weights.filter(([kind]) => (enemyCatalog[kind]?.randomAt || enemyCatalog[kind]?.unlockAt || 0) <= this.elapsed);
+      const available = weights.filter(([kind]) => this.getEnemyTiming(kind).randomAt <= this.elapsed);
       const pool = available.length ? available : [["shade", 1]];
       const totalWeight = pool.reduce((sum, entry) => sum + entry[1], 0);
       let roll = Math.random() * totalWeight;
@@ -5185,7 +5278,7 @@
 
     pickEnemyKind() {
       const roll = Math.random();
-      if (this.battlefieldProfile.id === "mirror-harbor" && this.elapsed >= 18 && Math.random() < 0.18) {
+      if (this.battlefieldProfile.id === "mirror-harbor" && this.elapsed >= RUN_PROFILE.tideweaverAt && Math.random() < 0.18) {
         return "tideweaver";
       }
       if (this.elapsed < 6) return "shade";
@@ -5216,7 +5309,7 @@
     spawnEnemy(kind, spawnX = null, spawnY = null) {
       if (!this.started || this.ended) return;
       const stats = enemyCatalog[kind];
-      if (!stats || (stats.unlockAt || 0) > this.elapsed) return;
+      if (!stats || this.getEnemyTiming(kind).unlockAt > this.elapsed) return;
       const maxActive = stats.maxActive || (kind === "tideweaver" ? 1 : null);
       if (maxActive) {
         let activeCount = 0;
@@ -5428,7 +5521,11 @@
       boss.body.checkCollision.none = true;
       boss.setVelocity(0, 175);
       const baseBossHealth = mirrorBoss ? 1900 + this.level * 65 : 2050 + this.level * 75;
-      const bossHealth = Math.round(baseBossHealth * (this.battlefieldProfile.bossHealthScale || 1));
+      const bossHealth = Math.round(
+        baseBossHealth
+        * (this.battlefieldProfile.bossHealthScale || 1)
+        * RUN_PROFILE.bossHealthMultiplier,
+      );
       const bossColor = mirrorBoss ? 0x43d9d0 : COLORS.red;
       const bossAura = this.add.circle(x, y, mirrorBoss ? 66 : 56, bossColor, 0.025)
         .setStrokeStyle(3, bossColor, 0.66)
@@ -6008,7 +6105,7 @@
         this.bossTelegraph.clear();
         ui.bossStatus.hidden = true;
         this.elapsed = RUN_DURATION;
-        ui.waveLabel.textContent = "01:40 · 黎明抵达";
+        ui.waveLabel.textContent = `${RUN_END_LABEL} · 黎明抵达`;
         this.spawnBossDeathSpectacle(x, y, this.battlefieldProfile.id === "mirror-harbor" ? 0x43d9d0 : COLORS.gold);
         enemy.destroy();
         this.updateHud(true);
@@ -7054,6 +7151,6 @@
 
   window.addEventListener("blur", () => {
     resetJoystick();
-    if (activeScene?.started && !activeScene.ended && !activeScene.isChoosing) activeScene.togglePause(true);
+    if (!QA_MODE && activeScene?.started && !activeScene.ended && !activeScene.isChoosing) activeScene.togglePause(true);
   });
 })();
