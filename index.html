@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#071012" />
     <title>最后一盏灯</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=20260714c" />
-    <link rel="stylesheet" href="src/ui/battlefield-picker.css?v=20260714c" />
+    <link rel="stylesheet" href="styles.css?v=d058-5bdfe355" />
+    <link rel="stylesheet" href="src/ui/battlefield-picker.css?v=d058-5bdfe355" />
   </head>
   <body>
     <main id="game-shell" class="game-shell">
@@ -31,6 +31,10 @@
         </div>
 
         <div class="hud-actions">
+          <div class="counter counter--currency" aria-label="持有灯屑">
+            <span>灯屑</span>
+            <strong id="currency-count">0</strong>
+          </div>
           <div class="counter" aria-label="击退数量">
             <span>击退</span>
             <strong id="kill-count">000</strong>
@@ -131,7 +135,7 @@
 
       <section id="start-screen" class="overlay overlay--start" aria-labelledby="game-title">
         <div class="start-panel">
-          <span id="start-eyebrow" class="eyebrow">第一远征 · 一局约 10 分钟</span>
+          <span id="start-eyebrow" class="eyebrow">第一远征 · 一局约 8 分钟</span>
           <h1 id="game-title">最后一盏灯</h1>
           <p id="start-description">携带最后的火种自由穿行，在三幕黑潮中构筑武器与连携。</p>
 
@@ -164,11 +168,11 @@
               </button>
               <button class="weapon-option" type="button" data-weapon="scatter" aria-pressed="false" style="--weapon-color:#ef7563">
                 <span class="weapon-option__sigil">散</span>
-                <span><strong>碎星扇</strong><small>近距三连 <b data-weapon-mastery="scatter">0/24 印</b></small><em>专属 · 第四击环射</em></span>
+                <span><strong>碎星扇</strong><small>宽扇近斩 <b data-weapon-mastery="scatter">0/24 印</b></small><em>专属 · 第四击旋刃</em></span>
               </button>
               <button class="weapon-option" type="button" data-weapon="lance" aria-pressed="false" style="--weapon-color:#69d5c8">
                 <span class="weapon-option__sigil">贯</span>
-                <span><strong>破夜枪</strong><small>重击穿透 <b data-weapon-mastery="lance">0/24 印</b></small><em>专属 · 第三击重枪</em></span>
+                <span><strong>破夜枪</strong><small>长线贯刺 <b data-weapon-mastery="lance">0/24 印</b></small><em>专属 · 第三击重枪</em></span>
               </button>
               <button class="weapon-option" type="button" data-weapon="returner" aria-pressed="false" style="--weapon-color:#c19cff">
                 <span class="weapon-option__sigil">轮</span>
@@ -208,7 +212,7 @@
           </button>
         </div>
         <div class="start-manifest" aria-hidden="true">
-          <span>03:00</span><i></i><span>10:00</span>
+          <span>03:00</span><i></i><span>08:00</span>
         </div>
       </section>
 
@@ -217,6 +221,9 @@
           <span class="eyebrow">火种共鸣 · 选择一种成长</span>
           <h2 id="upgrade-title">让光改变形状</h2>
           <div id="upgrade-options" class="upgrade-options"></div>
+          <div class="upgrade-refresh-row">
+            <button id="upgrade-refresh-button" class="text-button upgrade-refresh-button" type="button">本幕刷新三项 · 1次</button>
+          </div>
         </div>
       </section>
 
@@ -229,6 +236,47 @@
             <span id="route-origin">城灯庭</span><i></i><strong id="route-stage-name">第二幕</strong><i></i><span>终夜</span>
           </div>
           <div id="route-options" class="route-options"></div>
+        </div>
+      </section>
+
+      <section id="secondary-screen" class="overlay overlay--secondary" role="dialog" aria-modal="true" aria-labelledby="secondary-title" hidden>
+        <div class="secondary-panel">
+          <span class="eyebrow">当前守夜器 · 免费副武器</span>
+          <h2 id="secondary-title">为这趟远征添一种火法</h2>
+          <p>三选一，不消耗灯屑与普通整备位。之后两间商店会出现对应改造。</p>
+          <div id="secondary-options" class="secondary-options"></div>
+        </div>
+      </section>
+
+      <section id="shop-screen" class="overlay overlay--shop" role="dialog" aria-modal="true" aria-labelledby="shop-title" hidden>
+        <div class="shop-panel">
+          <div class="shop-heading">
+            <div>
+              <span id="shop-kicker" class="eyebrow">幕间整备 · 第 1 / 3 次</span>
+              <h2 id="shop-title">给下一幕准备一个答案</h2>
+              <p id="shop-prompt">普通整备每间商店最多购买两件；稀有遗物使用独立遗物槽。</p>
+            </div>
+            <div class="shop-balance" aria-label="商店余额与普通整备位">
+              <span>随身灯屑</span>
+              <strong id="shop-currency">0 灯屑</strong>
+              <small id="shop-slots">普通整备 0 / 2</small>
+            </div>
+          </div>
+          <div class="shop-relic-rack" aria-label="已装备稀有遗物">
+            <div class="shop-relic-rack__label">
+              <span>稀有遗物</span>
+              <small id="shop-relic-summary">0 / 2 已用 · 不占普通整备位</small>
+            </div>
+            <div id="shop-relic-slots" class="shop-relic-slots"></div>
+          </div>
+          <div id="shop-options" class="shop-options"></div>
+          <div class="shop-footer">
+            <p id="shop-notice" aria-live="polite">本幕结算中</p>
+            <div class="shop-actions">
+              <button id="shop-refresh-button" class="text-button shop-refresh-button" type="button">刷新货架 · 25</button>
+              <button id="shop-continue-button" class="command-button shop-continue-button" type="button">保留灯屑并继续</button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -273,10 +321,8 @@
     </main>
 
     <script src="node_modules/phaser/dist/phaser.min.js"></script>
-    <script src="src/content/battlefields.js?v=20260714q"></script>
-    <script src="src/stages/mirror-harbor.js?v=20260714q"></script>
-    <script src="game.js?v=20260714q"></script>
-
+    <script src="src/content/battlefields.js?v=d058-5bdfe355"></script>
+    <script src="src/stages/mirror-harbor.js?v=d058-5bdfe355"></script>
+    <script src="game.js?v=d058-5bdfe355"></script>
   </body>
 </html>
-
